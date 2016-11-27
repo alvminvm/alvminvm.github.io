@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jeremy&#39;Memo</title>
+  <subtitle>Android Developer,Vimer</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://zlv.me/"/>
+  <updated>2016-06-30T08:44:16.000Z</updated>
+  <id>http://zlv.me/</id>
+  
+  <author>
+    <name>JeremyHe</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux(Ubuntu),Android日常工作碎碎念</title>
+    <link href="http://zlv.me/posts/2016/06/06/15_nag_about-linux-ubuntu-android/"/>
+    <id>http://zlv.me/posts/2016/06/06/15_nag_about-linux-ubuntu-android/</id>
+    <published>2016-06-06T04:27:00.000Z</published>
+    <updated>2016-06-30T08:44:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>此篇文章仅用于记录一些在使用Linux进行日常工作过程中,比较有用,能提高效率或解决问题的知识点,技术点.写大篇幅觉得浪费,不写又容易忘记.于是统一记录到此碎碎念中.</p>
+<h2 id="Linux-Ubuntu"><a href="#Linux-Ubuntu" class="headerlink" title="Linux(Ubuntu)"></a>Linux(Ubuntu)</h2><h3 id="ssh-登录远程机器"><a href="#ssh-登录远程机器" class="headerlink" title="ssh 登录远程机器"></a>ssh 登录远程机器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh username@192.168.1.2</div></pre></td></tr></table></figure>
+<h3 id="scp-远程机器与本地进行文件复制传输"><a href="#scp-远程机器与本地进行文件复制传输" class="headerlink" title="scp 远程机器与本地进行文件复制传输"></a>scp 远程机器与本地进行文件复制传输</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ scp</div></pre></td></tr></table></figure>
+<h3 id="crontab-定时任务"><a href="#crontab-定时任务" class="headerlink" title="crontab 定时任务"></a>crontab 定时任务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ crontab <span class="_">-e</span> 			     <span class="comment"># 编辑定时任务</span></div><div class="line">$ crontab <span class="_">-l</span>                  <span class="comment"># 列出当前任务</span></div></pre></td></tr></table></figure>
+<h3 id="awk-强大的文本分析工具"><a href="#awk-强大的文本分析工具" class="headerlink" title="awk 强大的文本分析工具"></a>awk 强大的文本分析工具</h3><p>使用方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ awk <span class="string">'&#123;pattern + action&#125;'</span> &#123;filenames&#125;</div><div class="line">$ awk  <span class="string">'&#123;print $1&#125;'</span></div><div class="line"></div><div class="line"><span class="comment"># 例如</span></div><div class="line">$ <span class="built_in">echo</span> <span class="string">"text1 text2 text3"</span> | awk <span class="string">'&#123;print $0&#125;'</span></div><div class="line"><span class="comment"># 输出</span></div><div class="line">$ text1 text2 text3</div><div class="line"></div><div class="line">$ <span class="built_in">echo</span> <span class="string">"text1 text2 text3"</span> | awk <span class="string">'&#123;print $2&#125;'</span></div><div class="line"><span class="comment"># 输出</span></div><div class="line">$ text1</div></pre></td></tr></table></figure></p>
+<p>awk甚至可以使用条件判断,循环,变量等完成工作.更详情的内容可自行搜索</p>
+<h3 id="时间同步"><a href="#时间同步" class="headerlink" title="时间同步"></a>时间同步</h3><p>在使用crontab之前,首先要保证本机的时间正确.最简单的办法是直接与网络时间服务器同步一下即可.<br>常用服务器如下:  </p>
+<ul>
+<li>中国国家授时中心：210.72.145.44</li>
+<li>NTP服务器(上海) ：ntp.api.bz<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo ntpdate -u ntp.api.bz</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果没有网络,则可以通过<code>date</code>命令自己手动调整时间  </p>
+<h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><h3 id="monkey-随机测试工具"><a href="#monkey-随机测试工具" class="headerlink" title="monkey 随机测试工具"></a>monkey 随机测试工具</h3><p>每一次发布版本或者提交功能前,使用monkey经常可以跑出一些潜在的问题,非常有用.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 启动, 将$packagename改成自己的应用包名即可. </span></div><div class="line"><span class="comment"># 最后一句报告输出可不要,默认输出在终端上,默认报异常时结束</span></div><div class="line">$ adb shell monkey -p <span class="variable">$packagename</span> -v --throttle 25 <span class="_">-s</span> <span class="variable">$seed</span> <span class="variable">$count</span> --bugreport <span class="variable">$logdir</span>/report.log</div><div class="line"></div><div class="line"><span class="comment"># 停止</span></div><div class="line"><span class="comment"># 采用kill掉进程的方式.</span></div><div class="line"><span class="comment"># 先查看monkey在设备上的进程号,然后kill掉设备上对应的进程号$pid即可</span></div><div class="line">$ adb shell ps | grep monkey</div><div class="line">$ adb shell <span class="built_in">kill</span> <span class="variable">$pid</span></div></pre></td></tr></table></figure></p>
+<p>结合前面提到的awk命令,组合一下可以写成一个脚本用于每次结束monkey时调用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment"># monkey_stop.sh</span></div><div class="line">adb shell <span class="built_in">kill</span> `adb shell ps | grep monkey | awk <span class="string">'&#123;print $2&#125;'</span>`</div></pre></td></tr></table></figure></p>
+<h3 id="内存泄漏检查"><a href="#内存泄漏检查" class="headerlink" title="内存泄漏检查"></a>内存泄漏检查</h3><p>多次打开APP,并退出后,调用以下命令,查看结果.<br>如果<code>Views</code>和<code>Activities</code>的结果不为0,则说明存在内存泄漏情况.<br>需要结合<code>Android Device Monitor</code>或<code>LeakCanary</code>进行排查<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ adb shell dumpsys meminfo <span class="variable">$packagename</span></div></pre></td></tr></table></figure></p>
+<p> <img src="/images/15/meminfo.png" alt=""></p>
+<h3 id="NDK开发时，std-string显示不全问题"><a href="#NDK开发时，std-string显示不全问题" class="headerlink" title="NDK开发时，std::string显示不全问题"></a>NDK开发时，std::string显示不全问题</h3><p>在进行 NDK 开发的时候，当对std::string 变量进行<code>Copy Value</code>操作或者在 <code>lldb</code> 中进行 <code>po</code> 操作时<br>会发现，当字符串长度超过 300 个字符时，复制出来的字符串最后几位是<code>...</code><br>出现这个问题其实是<code>lldb</code>的限制 300 个字符输出的限制，把这个重新设置一下就好。</p>
+<p>在 Native Debug 状态下进行断点，然后切换到lldb 标签页，输入以下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">set</span> <span class="built_in">set</span> target.max-string-summary-length 10000</div></pre></td></tr></table></figure></p>
+<p>然后运行至需要查看变量的代码行，这时候再<code>Copy Value</code>或者在<code>lldb</code>中进行<code>po</code>操作<br>拿到的字符串就是完整的了。  </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;此篇文章仅用于记录一些在使用Linux进行日常工作过程中,比较有用,能提高效率或解决问题的知识点,技术点.写大篇幅觉得浪费,不写又容易忘记.于是统一记录到此碎碎念中.&lt;/p&gt;
+&lt;h2 id=&quot;Linux-Ubuntu&quot;&gt;&lt;a href=&quot;#Linux-Ubuntu&quot; cla
+    
+    </summary>
+    
+      <category term="Ubuntu" scheme="http://zlv.me/categories/Ubuntu/"/>
+    
+    
+      <category term="Ubuntu" scheme="http://zlv.me/tags/Ubuntu/"/>
+    
+      <category term="Linux" scheme="http://zlv.me/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>倍数提高工作效率的Android Studio奇技</title>
+    <link href="http://zlv.me/posts/2015/07/13/14_android-studio-tips/"/>
+    <id>http://zlv.me/posts/2015/07/13/14_android-studio-tips/</id>
+    <published>2015-07-13T13:27:00.000Z</published>
+    <updated>2015-07-13T13:27:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是从Philippe Breault的系列文章《Android Studio Tips Of the Day》中提取出来的自认为精华的部分。<br>这些技巧在实际应用中能够非常大的提高工作效率。 </p>
+<h2 id="关于快捷键"><a href="#关于快捷键" class="headerlink" title="关于快捷键"></a>关于快捷键</h2><h3 id="The-File-Structure-Popup"><a href="#The-File-Structure-Popup" class="headerlink" title="The File Structure Popup"></a>The File Structure Popup</h3><blockquote>
+<p> <strong>ctrl+f12</strong>   </p>
+</blockquote>
+<p>此快捷键可以调出当前文件的大纲，并通过模糊匹配快速跳转至指定的方法。<br>勾选上“show anonymous classes”后其功能相当于Eclipse中的ctrl+o<br><img src="/images/14/14-ctrl+f12.gif" alt="fileStructure">  </p>
+<h3 id="The-Call-Hierarchy-Popup"><a href="#The-Call-Hierarchy-Popup" class="headerlink" title="The Call Hierarchy Popup"></a>The Call Hierarchy Popup</h3><blockquote>
+<p> <strong>ctrl+alt+h</strong>   </p>
+</blockquote>
+<p>查看某个方法的调用路径。<br><img src="/images/14/14-ctrl+alt+h.gif" alt="fileStructure">    </p>
+<h3 id="Quick-Definition-Lookup"><a href="#Quick-Definition-Lookup" class="headerlink" title="Quick Definition Lookup"></a>Quick Definition Lookup</h3><blockquote>
+<p> <strong>ctrl+shift+i</strong>   </p>
+</blockquote>
+<p>不离开当前文件当前类的情况下快速查看某个方法或者类的实现。通过大概预览下调用的方法，可以避免许多未知的坑。<br><img src="/images/14/14-ctrl+shift+i.gif" alt="fileStructure">    </p>
+<h3 id="Bookmarks"><a href="#Bookmarks" class="headerlink" title="Bookmarks!"></a>Bookmarks!</h3><p>如其名，书签。帮助快速回到指定的位置，实际使用中简直爽得不行。  </p>
+<blockquote>
+<p> <strong>f11</strong>  </p>
+</blockquote>
+<p>将当前位置添加到书签中或者从书签中移除。  </p>
+<blockquote>
+<p> <strong>shift+f11</strong>  </p>
+</blockquote>
+<p>显示有哪些书签。<br><img src="/images/14/14-Bookmarks.gif" alt="fileStructure">    </p>
+<h3 id="Find-Actions"><a href="#Find-Actions" class="headerlink" title="Find Actions"></a>Find Actions</h3><blockquote>
+<p> <strong>ctrl+shift+a</strong>  </p>
+</blockquote>
+<p>对于没有设置快捷键或者忘记快捷键的菜单或者动作（Action），可能通过输入其名字快速调用。神技！！！<br>例如想要编译，只需要输入”release”，则列表框中就会出现”assembleRelease”选项，选择就可以进行编译。<br><img src="/images/14/14-FindActions.gif" alt="fileStructure">    </p>
+<h3 id="Move-Lines-Up-Down"><a href="#Move-Lines-Up-Down" class="headerlink" title="Move Lines Up/Down"></a>Move Lines Up/Down</h3><blockquote>
+<p> <strong>alt+shift+up/down</strong>  </p>
+</blockquote>
+<p>上下移动行，这个没什么好说的，肯定会用到。<br><img src="/images/14/14-MoveLinesUpDown.gif" alt="fileStructure">    </p>
+<h3 id="Lines-Edit"><a href="#Lines-Edit" class="headerlink" title="Lines Edit"></a>Lines Edit</h3><blockquote>
+<p> <strong>ctrl+y，ctrl+x, ctrl+d</strong>  </p>
+</blockquote>
+<p>删除行，删除并复制行，复制行并粘贴，必备。  </p>
+<h3 id="VCS-Operations-Popup"><a href="#VCS-Operations-Popup" class="headerlink" title="VCS Operations Popup"></a>VCS Operations Popup</h3><blockquote>
+<p> <strong>Alt+(1左边的那个键)</strong>   </p>
+</blockquote>
+<p>此快捷键会显示一个版本管理常用的一个命令，可以通过命令前面的数字或者模糊匹配来快速选择命令。<br>极大的提高了工作效率，快速提交代码、暂存代码、切分支等操作操作如鱼得水。<br><img src="/images/14/14-vcspopup.gif" alt="fileStructure">    </p>
+<h3 id="Hide-All-Panels"><a href="#Hide-All-Panels" class="headerlink" title="Hide All Panels"></a>Hide All Panels</h3><blockquote>
+<p> <strong>ctrl+shift+f12</strong>  </p>
+</blockquote>
+<p>关闭或者恢复其他窗口。在编写代码的时候非常方便的全屏编辑框，可以更加专心的coding…<br><img src="/images/14/14-hideallwindows.gif" alt="fileStructure">    </p>
+<h3 id="Parameter-Info"><a href="#Parameter-Info" class="headerlink" title="Parameter Info"></a>Parameter Info</h3><blockquote>
+<p> <strong>ctrl+p</strong>  </p>
+</blockquote>
+<p>在调用一些方法的时候免不了会忘记或者不知道此方法需要哪些参数。&gt;  **ctrl+p`可以显示出此方法需要的参数。必备技能之一。   </p>
+<h3 id="Rename"><a href="#Rename" class="headerlink" title="Rename"></a>Rename</h3><blockquote>
+<p> <strong>shift+f6</strong>  </p>
+</blockquote>
+<p>重命名变量或者方法名。重构神技。<br><img src="/images/14/14-rename.gif" alt="fileStructure">                </p>
+<h2 id="条件断点"><a href="#条件断点" class="headerlink" title="条件断点"></a>条件断点</h2><p>通过右键断点，可以对一个断点加入条件。只有当满足条件时，才会进入到断点中。调试神技，只对自己关心的情况进行调试，不浪费时间。<br><img src="/images/14/14-conditionalbreakpoint.gif" alt="fileStructure">    </p>
+<h2 id="进入调试模式"><a href="#进入调试模式" class="headerlink" title="进入调试模式"></a>进入调试模式</h2><p>点击<code>Attach Debugger</code>(即绿色小虫旁边那个)可以快速进入调试而不需要重新部署和启动app。<br>可以选择为此功能设置一个快捷键或者通过前面提到的<code>Find Actions(ctrl+shift+a)</code>输入”attach”进行调用。<br><img src="/images/14/14-attachdebugger.gif" alt="fileStructure">    </p>
+<h2 id="快速查看变量的值"><a href="#快速查看变量的值" class="headerlink" title="快速查看变量的值"></a>快速查看变量的值</h2><p>按住<code>Alt</code>点击想要查看的变量或者语句。如果想查看更多，则可以按<code>Alt+f8</code>调出<code>Evaluate Expression</code>窗口来自行输入自定义的语句。<br><img src="/images/14/14-mouse_evaluate_expression.gif" alt="fileStructure">    </p>
+<h2 id="分析堆栈信息"><a href="#分析堆栈信息" class="headerlink" title="分析堆栈信息"></a>分析堆栈信息</h2><p><code>Find Actions(ctrl+shift+a)</code>输入”analyze stacktrace”即可查看堆栈信息。<br><img src="/images/14/14-analyzestacktrace.gif" alt="fileStructure">    </p>
+<h2 id="分析某个值的来源"><a href="#分析某个值的来源" class="headerlink" title="分析某个值的来源"></a>分析某个值的来源</h2><p><code>Find Actions(ctrl+shift+a)</code>输入”Analyze Data Flow to Here”，可以查看某个变量某个参数其值是如何一路赋值过来的。<br>对于分析代码非常有用。<br><img src="/images/14/14-analyzedataflow.gif" alt="fileStructure">    </p>
+<h2 id="多行编辑"><a href="#多行编辑" class="headerlink" title="多行编辑"></a>多行编辑</h2><p>强大的神技之一，用过vim的vim-multiple-cursors或者Sublime Text的多行编辑都不会忘记那种快感！<br>也许不是平时用得最多的技能，但是却是关键时刻提高效率的工具。<br>快捷键：<code>Alt+J</code><br><img src="/images/14/14-multiselection.gif" alt="fileStructure">    </p>
+<h2 id="列编辑"><a href="#列编辑" class="headerlink" title="列编辑"></a>列编辑</h2><p>在vim中叫作块编辑，同样神技！使用方法：按住<code>Alt</code>加鼠标左键拉框即可<br>PS：发现Ubuntu下不可用，代替方法为按<code>Alt+Shift+Insert</code>之后拖框选择。<br>但是经过这么操作之后，神技就大打折扣了。估计是与Ubuntu的快捷键冲突了。<br><img src="/images/14/14-columnselection.gif" alt="fileStructure">    </p>
+<h2 id="Enter和Tab在代码提示时的区别"><a href="#Enter和Tab在代码提示时的区别" class="headerlink" title="Enter和Tab在代码提示时的区别"></a>Enter和Tab在代码提示时的区别</h2><p>看图!<br><img src="/images/14/14-codecompletionentertab.gif" alt="fileStructure">    </p>
+<h2 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h2><ol>
+<li><a href="http://www.developerphil.com/android-studio-tips-of-the-day-roundup-1/title" target="_blank" rel="external">Android Studio Tips Of the Day - Roundup #1</a>  </li>
+<li><a href="http://www.developerphil.com/android-studio-tips-of-the-day-roundup-2/title" target="_blank" rel="external">Android Studio Tips Of the Day - Roundup #2</a>  </li>
+<li><a href="http://www.developerphil.com/android-studio-tips-of-the-day-roundup-3/title" target="_blank" rel="external">Android Studio Tips Of the Day - Roundup #3</a>  </li>
+<li><a href="http://www.developerphil.com/android-studio-tips-of-the-day-roundup-4/title" target="_blank" rel="external">Android Studio Tips Of the Day - Roundup #4</a>  </li>
+<li><a href="http://www.developerphil.com/android-studio-tips-of-the-day-roundup-5/title" target="_blank" rel="external">Android Studio Tips Of the Day - Roundup #5</a>  </li>
+<li><a href="http://www.developerphil.com/android-studio-tips-of-the-day-roundup-6/title" target="_blank" rel="external">Android Studio Tips Of the Day - Roundup #6</a>  </li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是从Philippe Breault的系列文章《Android Studio Tips Of the Day》中提取出来的自认为精华的部分。&lt;br&gt;这些技巧在实际应用中能够非常大的提高工作效率。 &lt;/p&gt;
+&lt;h2 id=&quot;关于快捷键&quot;&gt;&lt;a href=&quot;#关于快捷键&quot; c
+    
+    </summary>
+    
+      <category term="Android" scheme="http://zlv.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://zlv.me/tags/Android/"/>
+    
+      <category term="Android Studio" scheme="http://zlv.me/tags/Android-Studio/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在Android中使用Alarm小结</title>
+    <link href="http://zlv.me/posts/2015/06/10/13_tips-when-using-repeating-alarms/"/>
+    <id>http://zlv.me/posts/2015/06/10/13_tips-when-using-repeating-alarms/</id>
+    <published>2015-06-10T14:06:00.000Z</published>
+    <updated>2016-06-30T08:36:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在Android中，通过<code>AlarmManager</code>我们可以设置一些闹钟。在一些指定的时间点启动我们的服务进行处理事件。<br>例如每隔几小时拉取一下网络数据，或者每天8点钟提醒用户等。<br>而在使用<code>AlarmManager</code>时，注意以下几个点将会帮助你更好的使用这个特性。  </p>
+<h2 id="触发时间增加随机性"><a href="#触发时间增加随机性" class="headerlink" title="触发时间增加随机性"></a>触发时间增加随机性</h2><p>如果设置闹钟所触发的任务中包含网络请求时，建议为这个触发时间点增加随机性。<br>假设设定在早上8点发起查询天气预报的网络请求，不增加随机性。那么在8点这一时刻，服务器将会收到大量的请求，造成服务器压力过大，如果设备足够多，服务器甚至会无法正常提供服务。<br>因此，增加随机性，将这些请求分散到不同的触发时间点，例如部分用户触发时间为7点，而部分用户触发时间为8点。可以根据需要，分散到更多更随机的时间区间。<br>这样做可以有效的错开这些网络请求的时间，减缓服务器的压力，从而服务器可以提供更好更快的服务。  </p>
+<h2 id="使用setInexactRepeating-代替setRepeating"><a href="#使用setInexactRepeating-代替setRepeating" class="headerlink" title="使用setInexactRepeating()代替setRepeating()"></a>使用setInexactRepeating()代替setRepeating()</h2><p>当使用setInexactRepeating()时，系统可以在同一时间触发多个应用的闹钟，从而有效的减少设备的唤醒次数。<br>而从Android4.4开始，所以的闹钟触发时间点都不再是准确无误的。<br>因此，为了降低耗电量，在不是非常需要准确时间触发的情况下，建议使用<code>setInexactRepeating()</code>。  </p>
+<h2 id="ELAPSED-REALTIME与RTC"><a href="#ELAPSED-REALTIME与RTC" class="headerlink" title="ELAPSED_REALTIME与RTC"></a>ELAPSED_REALTIME与RTC</h2><p><code>ELAPSED_REALTIME</code>是基于系统启动到现在的时间，因此<code>ELAPSED_REALTIME</code>适合用于设置需要在未来多长时间之后触发的闹钟。<br>例如希望在半个小时之后触发等。  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">alarmMgr.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,</div><div class="line">        AlarmManager.INTERVAL_HALF_HOUR,</div><div class="line">        AlarmManager.INTERVAL_HALF_HOUR, alarmIntent);</div><div class="line"></div><div class="line"><span class="comment">// 或者是指定时长  </span></div><div class="line">alarmMgr.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,</div><div class="line">        SystemClock.elapsedRealtime() + <span class="number">60</span> * <span class="number">1000</span>, alarmIntent);</div></pre></td></tr></table></figure>
+<p>RTC是基于当前时区的确切时间，因此适合用于设置需要精确到某一天的某个时刻进行触发的闹钟。<br>例如希望在下午2点钟的时候触发：  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 设置calendar到今天14点</span></div><div class="line">Calendar calendar = Calendar.getInstance();</div><div class="line">calendar.setTimeInMillis(System.currentTimeMillis());</div><div class="line">calendar.set(Calendar.HOUR_OF_DAY, <span class="number">14</span>);</div><div class="line"></div><div class="line"><span class="comment">// 设置触发时间，并每隔一天进行提醒  </span></div><div class="line">alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),</div><div class="line">        AlarmManager.INTERVAL_DAY, alarmIntent);</div></pre></td></tr></table></figure>
+<h2 id="wakeup版本与非wakeup版本的区别"><a href="#wakeup版本与非wakeup版本的区别" class="headerlink" title="wakeup版本与非wakeup版本的区别"></a>wakeup版本与非wakeup版本的区别</h2><p>wakeup版本为：  </p>
+<ul>
+<li>RTC_WAKEUP  </li>
+<li>ELAPSED_REALTIME_WAKEUP  </li>
+</ul>
+<p>非wakeup版本：  </p>
+<ul>
+<li>RTC  </li>
+<li>ELAPSED_REALTIME  </li>
+</ul>
+<p>他们的区别在于设备屏幕熄灭状态下的反应。wakeup版本触发时，当屏幕处于熄灭状态时依旧会唤醒设备，从而可以执行所必要的操作。而非wakeup版本触发时，如果此时屏幕处于熄灭状态，则不会把设备唤醒，而是等到用户或者是其他操作把设备唤醒时，才会把pendingIntent传递过去从而执行任务。  </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在Android中，通过&lt;code&gt;AlarmManager&lt;/code&gt;我们可以设置一些闹钟。在一些指定的时间点启动我们的服务进行处理事件。&lt;br&gt;例如每隔几小时拉取一下网络数据，或者每天8点钟提醒用户等。&lt;br&gt;而在使用&lt;code&gt;AlarmManager&lt;/code&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://zlv.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://zlv.me/tags/Android/"/>
+    
+      <category term="Alarms" scheme="http://zlv.me/tags/Alarms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>保持设备为唤醒状态</title>
+    <link href="http://zlv.me/posts/2015/06/09/12_keep-device-awake/"/>
+    <id>http://zlv.me/posts/2015/06/09/12_keep-device-awake/</id>
+    <published>2015-06-09T13:34:00.000Z</published>
+    <updated>2016-06-30T08:36:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>当Android设备从运行状态转至空闲状态时，手机的屏幕将会慢慢变暗并关闭屏幕，最终cpu也将处于休息状态。这样的机制主要是为了缓解电池电量的流失。<br>但是对于有些情况，我们并不希望屏幕变暗，例如当我们在玩游戏或者说我们在看电影的时候，就需要屏幕能够保持常亮状态。<br>同样当在做一些比较重要的操作的时候，也希望cpu能够一直保持着运行状态，而不是休息状态，导致操作中止。<br>Android中提供了一些方法来实现这些需求。  </p>
+<h2 id="保持屏幕常亮"><a href="#保持屏幕常亮" class="headerlink" title="保持屏幕常亮"></a>保持屏幕常亮</h2><p>当有需求需要屏幕常亮时（例如游戏或者电影），最好的方式是在Activity中使用<code>FLAG_KEEP_SCREEN_ON</code>。但是这个标志不要在service或者其他组件中使用，仅能够在Activity中使用。  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.activity_main);</div><div class="line">    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>这种方式相对于<code>wake locks</code>(后面会讲到)的优势在于，一是不需要申请权限即可使用；二是不需要考虑资源的释放，如wakeLock。  </p>
+<p>除此之外，还可以在xml布局中指定这个flag，具体方法是使用<code>android:keepScreenOn</code>属性。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:keepScreenOn</span>=<span class="string">"true"</span>&gt;</div><div class="line">    ...</div><div class="line"><span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在xml指定<code>android:keepScreenOn</code>属性与在Activity中addFlag效果是一样的，只是方式不同，可根据需要来进行选择。  </p>
+<p>而当不再需要保持屏幕常亮时，只要调用<code>clearFlags()</code>方法清除掉<code>FLAG_KEEP_SCREEN_ON</code>即可<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)</div></pre></td></tr></table></figure></p>
+<h2 id="保持cpu运行状态"><a href="#保持cpu运行状态" class="headerlink" title="保持cpu运行状态"></a>保持cpu运行状态</h2><p>在执行某些重要的操作时，确实需要在屏幕熄灭后，cpu依旧能保持运行状态来完成这些操作。<br>这时可能通过申请<code>WAKE_LOCK</code>来保持cpu处于运行状态。但是记住不要长时间地hold住，在完成操作后一定要释放掉，否则耗电会非常严重。  </p>
+<p>申请wake lock，首先需要在manifest文件中添加申请权限：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.WAKE_LOCK"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<p>然后在需要保持cpu运行状态操作的地方法，申请wakelock:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);</div><div class="line">Wakelock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,</div><div class="line">        <span class="string">"MyWakelockTag"</span>);</div><div class="line">wakeLock.acquire();</div></pre></td></tr></table></figure></p>
+<p>以上便能保证当手机屏幕熄灭后，cpu依旧能保持运行状态，来完成那个比较重要的操作。<br>需要注意的是，在完成这些操作之后，一定要记得释放掉wakeLock。长时间保持cpu运行状态将会使手机的电量快速的耗尽。到时，app将会出现在耗电量排行榜的首位。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wakelock.release()</div></pre></td></tr></table></figure></p>
+<h2 id="使用WakefulBroadcastReceiver"><a href="#使用WakefulBroadcastReceiver" class="headerlink" title="使用WakefulBroadcastReceiver"></a>使用WakefulBroadcastReceiver</h2><p>如果需求hold住wakeLock的service是通过BroadcastReceiver来启动的，那么更加建议使用WakefulBroadcastReceiver，而不是直接调用<code>wakeLock.acquire()</code>。<br>因为WakefulBroadcastReceiver能很好的帮我们管理hold住的wakeLock。  </p>
+<p>使用WakefulBroadcastReceiver与使用普通的BroadcastReceiver并没有多大的区别，不同的是在于启动service之后，需要调用<code>startWakefulService</code>来保持cpu运行状态。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyWakefulReceiver</span> <span class="keyword">extends</span> <span class="title">WakefulBroadcastReceiver</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</div><div class="line">		<span class="comment">// 启动service来完成一些重要的任务  </span></div><div class="line">        Intent service = <span class="keyword">new</span> Intent(context, MyIntentService.class);</div><div class="line"></div><div class="line">		<span class="comment">// 调用这个方法来保持cpu在屏幕熄灭的时候能够处于运行状态  </span></div><div class="line">        startWakefulService(context, service);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>而当service中处理完任务之后，只需要调用<code>completeWakefulIntent</code>方法即可完成释放<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyIntentService</span> <span class="keyword">extends</span> <span class="title">IntentService</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyIntentService</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(<span class="string">"MyIntentService"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onHandleIntent</span><span class="params">(Intent intent)</span> </span>&#123;</div><div class="line">        Bundle extras = intent.getExtras();</div><div class="line"></div><div class="line">		<span class="comment">// 开始处理一些任务。。。</span></div><div class="line">		<span class="comment">// ...</span></div><div class="line">		<span class="comment">// 完成处理任务  </span></div><div class="line"></div><div class="line">		<span class="comment">// 调用此方法来释放wakeLock</span></div><div class="line">        MyWakefulReceiver.completeWakefulIntent(intent);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用WakefulBroadcastReceiver是官方比较推荐的方式，原因从<code>startWakefulService</code>和<code>completeWakefulIntent</code>可以看出，不需要写多余的getSystemService等方法去进行wakeLock，WakefulBroadcastReceiver已经替我们封装好了。并且这两个方法中使用了synchronized关键字，是线程安全的。WakefulBroadcastReceiver还会负责管理这些申请过来的wakeLock。  </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;当Android设备从运行状态转至空闲状态时，手机的屏幕将会慢慢变暗并关闭屏幕，最终cpu也将处于休息状态。这样的机制主要是为了缓解电池电量的流失。&lt;br&gt;但是对于有些情况，我们并不希望屏幕变暗，例如当我们在玩游戏或者说我们在看电影的时候，就需要屏幕能够保持常亮状态。&lt;br
+    
+    </summary>
+    
+      <category term="Android" scheme="http://zlv.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://zlv.me/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fragment使用时的一些Tips</title>
+    <link href="http://zlv.me/posts/2015/05/19/11_fragment-in-android-developer/"/>
+    <id>http://zlv.me/posts/2015/05/19/11_fragment-in-android-developer/</id>
+    <published>2015-05-19T14:17:00.000Z</published>
+    <updated>2016-06-30T08:36:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Tips-1：-不要重复添加Fragment"><a href="#Tips-1：-不要重复添加Fragment" class="headerlink" title="Tips 1： 不要重复添加Fragment"></a>Tips 1： 不要重复添加Fragment</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.news_articles);</div><div class="line"></div><div class="line">    <span class="comment">// However, if we're being restored from a previous state,</span></div><div class="line">    <span class="comment">// then we don't need to do anything and should return or else</span></div><div class="line">    <span class="comment">// we could end up with overlapping fragments.</span></div><div class="line">    <span class="keyword">if</span> (savedInstanceState != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Create a new Fragment to be placed in the activity layout</span></div><div class="line">    HeadlinesFragment firstFragment = <span class="keyword">new</span> HeadlinesFragment();</div><div class="line">    <span class="comment">// Add the fragment to the 'fragment_container' FrameLayout</span></div><div class="line">    getSupportFragmentManager().beginTransaction()</div><div class="line">            .add(R.id.fragment_container, firstFragment).commit();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过判断savedInstanceState是否为null来得知Activity是否已经创建过<br>如果是，则没必要再重新添加Fragment，否则会导致Fragment重叠。  </p>
+<h2 id="Tips-2-向Fragment传参数"><a href="#Tips-2-向Fragment传参数" class="headerlink" title="Tips 2: 向Fragment传参数"></a>Tips 2: 向Fragment传参数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// In case this activity was started with special instructions from an</span></div><div class="line"><span class="comment">// Intent, pass the Intent's extras to the fragment as arguments</span></div><div class="line">firstFragment.setArguments(getIntent().getExtras());</div></pre></td></tr></table></figure>
+<p>通过setArguments方法，可以把Activity接收到的Intent中的参数传递给Fragment<br>而在Fragment的onCreateView方法中，可以通过getArguments()的方式来获取传递过来的参数，然后对View进行初始化。<br>而官方推荐使用setArguments方式进行传递参数，而不推荐new HeadlinesFragment(“参数”);构造函数的方式传递，原因在于当系统需要重建Fragment时，setArguments方式所传递的参数仍然存在。具体分析可查看此文：<a href="http://blog.csdn.net/tu_bingbing/article/details/24143249" target="_blank" rel="external">http://blog.csdn.net/tu_bingbing/article/details/24143249</a>  </p>
+<h2 id="Tips-3-Fragment替换时使用addToBackStack"><a href="#Tips-3-Fragment替换时使用addToBackStack" class="headerlink" title="Tips 3: Fragment替换时使用addToBackStack"></a>Tips 3: Fragment替换时使用addToBackStack</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();</div><div class="line"></div><div class="line"><span class="comment">// Replace whatever is in the fragment_container view with this fragment,</span></div><div class="line"><span class="comment">// and add the transaction to the back stack so the user can navigate back</span></div><div class="line">transaction.replace(R.id.fragment_container, newFragment);</div><div class="line">transaction.addToBackStack(<span class="keyword">null</span>);</div><div class="line"></div><div class="line"><span class="comment">// Commit the transaction</span></div><div class="line">transaction.commit();</div></pre></td></tr></table></figure>
+<p>在进行替换Fragment操作时，如果同时通过addToBackStack把此事务添加到后退栈中<br>当用户按返回键时，则可以回退到前一个Fragment。<br>原因在于FragmentActivity的onBackPressed函数中会先判断后退栈中是否为空，如果不为空，则回滚当前事务，即返回到前一个Fragment；否则如果为空，则结束此Activity<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBackPressed</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!mFragments.popBackStackImmediate()) &#123;</div><div class="line">        finish();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>除此之外，如果使用了addToBackStack，则前一个Fragment并不会被销毁(destroyed)，而只是停止状态(stopped)  </p>
+<h2 id="Activity与Fragment交互、Fragment与Fragment交互"><a href="#Activity与Fragment交互、Fragment与Fragment交互" class="headerlink" title="Activity与Fragment交互、Fragment与Fragment交互"></a>Activity与Fragment交互、Fragment与Fragment交互</h2><p>每一个Fragment都是一个独立的可重用的UI组件，不应当与其他外部的组件产生强耦合。<br>因此，Fragment与Activity的交互同一些控件类似，都是采用提供接口的方式进行实现。而Activity则可直接调用Fragment的公有方法。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HeadlinesFragment</span> <span class="keyword">extends</span> <span class="title">ListFragment</span> </span>&#123;</div><div class="line">    OnHeadlineSelectedListener mCallback;</div><div class="line"></div><div class="line">    <span class="comment">// 对外提供的接口  </span></div><div class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnHeadlineSelectedListener</span> </span>&#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onArticleSelected</span><span class="params">(<span class="keyword">int</span> position)</span></span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAttach</span><span class="params">(Activity activity)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onAttach(activity);</div><div class="line">        </div><div class="line">        <span class="comment">// 检查外部的Activity是否实现了接口，如果实现，则直接保存至mCallback中</span></div><div class="line">		<span class="keyword">if</span> (activity <span class="keyword">instanceof</span> OnHeadlineSelectedListener) &#123;</div><div class="line">            mCallback = (OnHeadlineSelectedListener) activity;</div><div class="line">        &#125; </div><div class="line">	&#125;</div><div class="line">    </div><div class="line">	<span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onListItemClick</span><span class="params">(ListView l, View v, <span class="keyword">int</span> position, <span class="keyword">long</span> id)</span> </span>&#123;</div><div class="line">        <span class="comment">// 当需要的时候，调用接口，通知实现了此接口的Activity  </span></div><div class="line">		<span class="keyword">if</span> (mCallback != <span class="keyword">null</span>) &#123;</div><div class="line">			mCallback.onArticleSelected(position);</div><div class="line">		&#125;</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>而Activity则采用直接调用Fragment公有方法的方式与Fragment进行交互<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span></span></div><div class="line">        <span class="keyword">implements</span> <span class="title">HeadlinesFragment</span>.<span class="title">OnHeadlineSelectedListener</span>&#123;</div><div class="line">    ...</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onArticleSelected</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        ArticleFragment articleFrag = (ArticleFragment)</div><div class="line">                getSupportFragmentManager().findFragmentById(R.id.article_fragment);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (articleFrag != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="comment">// 直接调用ArticleFragment的updateArticleView方法进行文章的更新  </span></div><div class="line">            articleFrag.updateArticleView(position);</div><div class="line">        &#125; </div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Tips-1：-不要重复添加Fragment&quot;&gt;&lt;a href=&quot;#Tips-1：-不要重复添加Fragment&quot; class=&quot;headerlink&quot; title=&quot;Tips 1： 不要重复添加Fragment&quot;&gt;&lt;/a&gt;Tips 1： 不要重复添加Fragme
+    
+    </summary>
+    
+      <category term="Android" scheme="http://zlv.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://zlv.me/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我的程序猿书单</title>
+    <link href="http://zlv.me/posts/2015/04/28/10_%E6%88%91%E7%9A%84%E7%A8%8B%E5%BA%8F%E7%8C%BF%E4%B9%A6%E5%8D%95/"/>
+    <id>http://zlv.me/posts/2015/04/28/10_我的程序猿书单/</id>
+    <published>2015-04-28T04:32:00.000Z</published>
+    <updated>2016-06-30T08:36:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="技术提升"><a href="#技术提升" class="headerlink" title="技术提升"></a>技术提升</h2><ul>
+<li><p>Android官方文档  </p>
+</li>
+<li><p>Android 源码设计模式解析与实战  </p>
+</li>
+<li><p>Android群英传  </p>
+</li>
+</ul>
+<h2 id="编程思想，架构之中"><a href="#编程思想，架构之中" class="headerlink" title="编程思想，架构之中"></a>编程思想，架构之中</h2><ul>
+<li><p>head First 设计模式  </p>
+</li>
+<li><p>大话设计模式  </p>
+</li>
+<li><p>设计模式之禅  </p>
+</li>
+<li><p>架构之美  </p>
+</li>
+</ul>
+<h2 id="IT界的小说，闲着没事读读"><a href="#IT界的小说，闲着没事读读" class="headerlink" title="IT界的小说，闲着没事读读"></a>IT界的小说，闲着没事读读</h2><ul>
+<li><p>黑客与画家  </p>
+</li>
+<li><p>软件随想录  </p>
+</li>
+<li><p>编程之美  </p>
+</li>
+</ul>
+<h2 id="程序之路，出任CEO之梦"><a href="#程序之路，出任CEO之梦" class="headerlink" title="程序之路，出任CEO之梦"></a>程序之路，出任CEO之梦</h2><ul>
+<li><p>程序员修炼之道  </p>
+</li>
+<li><p>软件开发者路线图—从学徒到高手    </p>
+</li>
+<li><p>带人的技术  </p>
+</li>
+</ul>
+<h2 id="视野扩展，T型发展"><a href="#视野扩展，T型发展" class="headerlink" title="视野扩展，T型发展"></a>视野扩展，T型发展</h2><ul>
+<li><p>拿工薪，三十几岁你也能赚到600万  </p>
+</li>
+<li><p>买基金为自己加薪  </p>
+</li>
+<li><p>设计心理学2：如何管理复杂  </p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;技术提升&quot;&gt;&lt;a href=&quot;#技术提升&quot; class=&quot;headerlink&quot; title=&quot;技术提升&quot;&gt;&lt;/a&gt;技术提升&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Android官方文档  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Android 源码设计模式解析与实战  &lt;
+    
+    </summary>
+    
+      <category term="Life" scheme="http://zlv.me/categories/Life/"/>
+    
+    
+      <category term="Android" scheme="http://zlv.me/tags/Android/"/>
+    
+      <category term="Life" scheme="http://zlv.me/tags/Life/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu 12.04安装Emacs24.3</title>
+    <link href="http://zlv.me/posts/2015/02/03/09_Ubuntu-1204%E5%AE%89%E8%A3%85Emacs243/"/>
+    <id>http://zlv.me/posts/2015/02/03/09_Ubuntu-1204安装Emacs243/</id>
+    <published>2015-02-03T12:36:00.000Z</published>
+    <updated>2016-06-30T08:36:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="清除旧版本（可选"><a href="#清除旧版本（可选" class="headerlink" title="清除旧版本（可选)"></a>清除旧版本（可选)</h2><p>为保证能一次性成功，后续不折腾，最后先把之前的Emacs版本相关的信息清除。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get update</div><div class="line">$ sudo apt-get install</div><div class="line">$ sudo apt-get purge emacs emacs-snapshot-common emacs-snapshot-bin-common emacs-snapshot emacs-snapshot-el emacs-snapshot-gtk emacs23 emacs23-bin-common emacs23-common emacs23-el emacs23-nox emacs23-lucid auctex apel emacs24 emacs24-bin-common emacs24-common emacs24-common-non-dfsg emacs24-el</div></pre></td></tr></table></figure>
+<h2 id="添加PPA源"><a href="#添加PPA源" class="headerlink" title="添加PPA源"></a>添加PPA源</h2><p>从Ubuntu的源中我们只能得到Emacs23,而官方Emacs则只能够自己编译。编译过程需要进行很多配置和安装一些库。<br>因此采用PPA源的方式进行安装，安装别人编译好的版本。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo add-apt-repository ppa:cassou/emacs</div><div class="line">$ sudo apt-get update</div></pre></td></tr></table></figure>
+<p>如果比较喜欢新特性，希望经常更新，则可以添加以下snapshot的PPA源  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo add-apt-repository ppa:ubuntu-elisp/ppa</div><div class="line">$ sudo apt-get update</div></pre></td></tr></table></figure>
+<h2 id="安装Emacs24"><a href="#安装Emacs24" class="headerlink" title="安装Emacs24"></a>安装Emacs24</h2><p>执行以下命令安装Emacs24<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install emacs24 emacs24-el emacs24-common-non-dfsg</div></pre></td></tr></table></figure></p>
+<p>如果是要安装snapshot版本，则执行以下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install emacs-snapshot-el emacs-snapshot-gtk emacs-snapshot</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;清除旧版本（可选&quot;&gt;&lt;a href=&quot;#清除旧版本（可选&quot; class=&quot;headerlink&quot; title=&quot;清除旧版本（可选)&quot;&gt;&lt;/a&gt;清除旧版本（可选)&lt;/h2&gt;&lt;p&gt;为保证能一次性成功，后续不折腾，最后先把之前的Emacs版本相关的信息清除。  &lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Ubuntu" scheme="http://zlv.me/categories/Ubuntu/"/>
+    
+    
+      <category term="Ubuntu" scheme="http://zlv.me/tags/Ubuntu/"/>
+    
+      <category term="Emacs" scheme="http://zlv.me/tags/Emacs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android Webview使用小结</title>
+    <link href="http://zlv.me/posts/2015/01/14/08_Android-Webview%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%BB%93/"/>
+    <id>http://zlv.me/posts/2015/01/14/08_Android-Webview使用小结/</id>
+    <published>2015-01-14T12:49:00.000Z</published>
+    <updated>2016-06-30T08:36:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="采用重载URL的方式实现Java与Js交互"><a href="#采用重载URL的方式实现Java与Js交互" class="headerlink" title="采用重载URL的方式实现Java与Js交互"></a>采用重载URL的方式实现Java与Js交互</h2><p>在Android中，常用的Java与Js交互的实现方式是通过函数addJavascriptInterface进行添加在Js中使用的回调代理类。<br>这种方法虽然方便，但是写出来的js代码并不通用。如果IOS也要实现类似的功能或业务，则IOS要另外写一套Js代码。所以不太推荐。  </p>
+<p>推荐使用重载URL的方式来实现，因为基本所有的平台都拥有在加载某个URL之前进行一些处理的回调函数。所以这种方式会更加的通用。  </p>
+<h2 id="响应Javascript中的alert"><a href="#响应Javascript中的alert" class="headerlink" title="响应Javascript中的alert"></a>响应Javascript中的alert</h2><p>在Android的WebView控件中，默认对JS的alert函数是没有任何反应的<br>要想弹出对应的对话框，则需要我们自己进行实现<br>具体实现代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">webView.getSettings().setJavaScriptEnabled(<span class="keyword">true</span>);</div><div class="line">webView.setWebChromeClient(<span class="keyword">new</span> WebChromeClient()&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onJsAlert</span><span class="params">(WebView view, String url, String message, <span class="keyword">final</span> JsResult result)</span> </span>&#123;</div><div class="line">        AlertDialog.Builder builder = <span class="keyword">new</span> AlertDialog.Builder(MainActivity.<span class="keyword">this</span>);</div><div class="line">        builder.setTitle(<span class="string">"测试alert"</span>);</div><div class="line">        builder.setMessage(message);</div><div class="line">        builder.setPositiveButton(<span class="string">"确定"</span>, <span class="keyword">new</span> OnClickListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>&#123;</div><div class="line">                result.confirm();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        builder.show();</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>通过以上代码就可以实现当JS中执行alert时，在Android上以原生的对话框显示出来，当然这里也可以直接Toast。  </p>
+<p>而这段代码中需要注意的地方有两点：  </p>
+<ol>
+<li><p><strong>返回值必须为<code>true</code>。</strong><br>返回true，则说明已经处理了，不需要交由WebChromeClient来执行。而如果返回的是false，则Webview会继续执行后续的js代码，现象就是，弹出对话框之后，用户还没点确定，后续的js代码已经执行完了.  </p>
+</li>
+<li><p><strong>最后必须调用result.confirm()。</strong><br>原因在于，如果没有调用此函数，则后续的JS代码将无法继续执行下去。最常见的现象就是，alert对话框只出现一次，第二次再进行alert的时候没有任何反应。其实这里是因为没有调用confirm函数，就相当于在浏览器中alert之后，用户没有点确定。  </p>
+</li>
+<li><p><strong>result.confirm()应该放到onClick回调中。</strong><br>正如前面说的，调用confirm函数，就相当于用户点击了确定按钮。因此，我们要把confirm函数的调用放到Android原生对话框的“确定”按钮的回调函数中进行调用。<br>之前没理解透，把confirm函数放在了builder.show之后进行调用，结果现象是alert之后，对话框弹出来了，但是后续的js代码没有阻塞，而是继续执行下去了，变得就像是异步了一样，和在chrome中调用js代码的执行逻辑不一致。<br>不过，如果需求就是要直接执行下去，那也可以，只要理解了就行。  </p>
+</li>
+</ol>
+<h2 id="访问证书有问题的SSL网页"><a href="#访问证书有问题的SSL网页" class="headerlink" title="访问证书有问题的SSL网页"></a>访问证书有问题的SSL网页</h2><p>对于有证书问题的网页，比如过期、信息不正确、发行机关不被信任等，Webview默认情况下会拒绝访问。而PC端浏览器的处理则是提供用户进行选择是否要继续，在android也是可以实现的。<br>首先第一种是直接继续，不需要让用户进行选择<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceivedSslError</span><span class="params">(WebView view, SslErrorHandler handler, SslError error)</span> </span>&#123;</div><div class="line">	<span class="comment">// 默认为调用handler.cancel()方法，因此不要调用super的onReceivedSslError方法</span></div><div class="line">    <span class="comment">// super.onReceivedSslError(view, handler, error);</span></div><div class="line">	handler.proceed();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里要注意的是，千万不要调用super的onReceivedSslError方法，因为此方法中已经调用了handler.cancel()。<br>如果调用了，则会出现第一次无法加载，第二次却能正常访问的现象。  </p>
+<h2 id="慎重在shouldoverrideurlloading中返回true"><a href="#慎重在shouldoverrideurlloading中返回true" class="headerlink" title="慎重在shouldoverrideurlloading中返回true"></a>慎重在shouldoverrideurlloading中返回true</h2><p>当设置了WebviewClient时，在shouldoverrideurlloading中如果不需要对url进行拦截做处理，而是简单的继续加载此网址。<br>则建议采用返回false的方式而不是loadUrl的方式进行加载网址。  </p>
+<p>为什么这么建议呢？<br>因为如果采用loadUrl的方式进行加载，那么对于加载有跳转的网址时，进行webview.goBack就会特别麻烦。<br>例如加载链接如下：<br>A-&gt;(B-&gt;C-&gt;D)-&gt;E  括号内为跳转<br>如果采用return false的方式，那么在goBack的时候，可以从第二步直接回到A网页。从E回到A只需要执行两次goBack<br>而如果采用的是loadUrl，则没办法直接从第二步回到A网页。因为loadUrl把第二步的每个跳转都认为是一个新的网页加载，因此从E回到A需要执行四次goBack  </p>
+<p>只有当不需要加载网址而是拦截做其他处理，如拦截tel:xxx等特殊url做拨号处理的时候，才应该返回true。  </p>
+<h2 id="onFormResubmission"><a href="#onFormResubmission" class="headerlink" title="onFormResubmission"></a>onFormResubmission</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;采用重载URL的方式实现Java与Js交互&quot;&gt;&lt;a href=&quot;#采用重载URL的方式实现Java与Js交互&quot; class=&quot;headerlink&quot; title=&quot;采用重载URL的方式实现Java与Js交互&quot;&gt;&lt;/a&gt;采用重载URL的方式实现Java与Js交互&lt;/
+    
+    </summary>
+    
+      <category term="Android" scheme="http://zlv.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://zlv.me/tags/Android/"/>
+    
+      <category term="Webview" scheme="http://zlv.me/tags/Webview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>别被函数说明骗了！--走出setInterpolator的深坑</title>
+    <link href="http://zlv.me/posts/2014/08/05/06_%E5%88%AB%E8%A2%AB%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E%E9%AA%97%E4%BA%86%EF%BC%81--%E8%B5%B0%E5%87%BAsetInterpolator%E7%9A%84%E6%B7%B1%E5%9D%91/"/>
+    <id>http://zlv.me/posts/2014/08/05/06_别被函数说明骗了！--走出setInterpolator的深坑/</id>
+    <published>2014-08-05T09:39:00.000Z</published>
+    <updated>2016-06-30T08:36:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="深坑详情"><a href="#深坑详情" class="headerlink" title="深坑详情"></a>深坑详情</h2><p>在使用RotateAnimation发现了这个问题。相信有很多人在使用RotateAnimation做旋转动画的时候都有过这样的问题，<br>就是动画旋转一周后，会有一段比较明显的停顿。于是，很多人没有深究其原因，通过将旋转角度设置为355而不是360这样的小技巧来弥补这个停顿时间，从而缓解了停顿感。  </p>
+<p>其实深究下来，这都是Interpolator的错。<br>仔细看，我们可以发现，动画的旋转过程其实是先加速，而后减速的。<br>所以由于开始的时候比较慢，结束的时候也比较慢，也就造成了动画在旋转快一周的时候有明显的停顿（其实只是动画变慢了而已）<br>但是setInterpolator函数却告诉我们，动画默认的interpolation是线性的，也就是说不存在先加速再减速的问题。  </p>
+<p>以下是setInterpolator的函数说明：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Sets the acceleration curve for this animation. Defaults to a linear</div><div class="line"> * interpolation.</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> i The interpolator which defines the acceleration curve</div><div class="line"> * <span class="doctag">@attr</span> ref android.R.styleable#Animation_interpolator</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setInterpolator</span><span class="params">(Interpolator i)</span> </span>&#123;</div><div class="line">	mInterpolator = i;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>虽然函数说明是说默认的Interpolator是linear interpolation，但是我只能说，别被骗了，以事实说话吧。<br>通过在Animation类中搜索mInterpolator，可以发现只有一个地方对mInterpolator进行赋值了。<br>那个函数就是ensureInterpolator。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Gurantees that this animation has an interpolator. Will use</div><div class="line"> * a AccelerateDecelerateInterpolator is nothing else was specified.</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">ensureInterpolator</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span> (mInterpolator == <span class="keyword">null</span>) &#123;</div><div class="line">		mInterpolator = <span class="keyword">new</span> AccelerateDecelerateInterpolator();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>从函数的实现中可以看到，当用户没有调用setInterpolator函数对mInterpolator进行初始化的时候，<br>ensureInterpolator会给mInterpolator赋值一个AccelerateDecelerateInterpolator<br>而这个，正是先加速，而后减速。也就是造成动画完成一个周期后产生停顿的原因。  </p>
+<h2 id="解决RotateAnimation旋转动画停顿现象"><a href="#解决RotateAnimation旋转动画停顿现象" class="headerlink" title="解决RotateAnimation旋转动画停顿现象"></a>解决RotateAnimation旋转动画停顿现象</h2><p>所以，我们在使用RotateAnimation的时候，要想解决动画停顿的现象，只需要把Interpolator设置成线性的就可以了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">RotateAnimation anim = <span class="keyword">new</span> RotateAnimation(<span class="number">0</span>, <span class="number">360</span>, Animation.RELATIVE_TO_SELF, <span class="number">0.5</span>, Animation.RELATIVE_TO_SELF, <span class="number">0.5</span>);</div><div class="line"><span class="comment">// 显式的设置其Interpolator为LinearInterpolator</span></div><div class="line">anim.setInterpolator(<span class="keyword">new</span> LinearInterpolator());</div><div class="line">anim.setRepeatCount(-<span class="number">1</span>);</div><div class="line">anim.setDuration(<span class="number">2000</span>);</div><div class="line">view.setAnimation(anim);</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;深坑详情&quot;&gt;&lt;a href=&quot;#深坑详情&quot; class=&quot;headerlink&quot; title=&quot;深坑详情&quot;&gt;&lt;/a&gt;深坑详情&lt;/h2&gt;&lt;p&gt;在使用RotateAnimation发现了这个问题。相信有很多人在使用RotateAnimation做旋转动画的时候都有过这
+    
+    </summary>
+    
+      <category term="Android" scheme="http://zlv.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://zlv.me/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>只需三步，添加文章目录模块</title>
+    <link href="http://zlv.me/posts/2014/08/03/05_%E5%8F%AA%E9%9C%80%E4%B8%89%E6%AD%A5%EF%BC%8C%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95%E6%A8%A1%E5%9D%97/"/>
+    <id>http://zlv.me/posts/2014/08/03/05_只需三步，添加文章目录模块/</id>
+    <published>2014-08-03T13:01:00.000Z</published>
+    <updated>2014-08-03T13:01:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在文章中使用目录还是挺好的<br>通过查看目录,  </p>
+<ul>
+<li>可以更加清晰地了解文章的总体结体,  </li>
+<li>读者可以很方便的进行选择性跳跃去阅读感兴趣的文章部分。  </li>
+<li>快速阅读文章内容  </li>
+</ul>
+<p>因此，折腾了一个午休时间，终于在landscape+主题里加入了文章目录模块。以下是瞎折腾的步骤。  </p>
+<h2 id="第一步：添加文章目录模块到文章模板中"><a href="#第一步：添加文章目录模块到文章模板中" class="headerlink" title="第一步：添加文章目录模块到文章模板中"></a>第一步：添加文章目录模块到文章模板中</h2><p>打开 <strong>\landscape-plus\layout_partial</strong> 目录下的 <strong>article.ejs</strong> 文件<br>找到相应的位置，加入以下<em>文章目录</em>那一块的代码<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 文章内容 --&gt;</div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"article-entry"</span> <span class="attr">itemprop</span>=<span class="string">"articleBody"</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">post.excerpt</span> &amp;&amp; <span class="attr">index</span>)&#123; %&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">%-</span> <span class="attr">post.excerpt</span> %&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">theme.excerpt_link</span>)&#123; %&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"article-more-link"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%- config.root %&gt;&lt;%- post.path %&gt;#more"</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">__</span>('<span class="attr">excerpt_link</span>') %&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">%</span> &#125; <span class="attr">else</span> &#123; %&gt;</span></div><div class="line">	<span class="comment">&lt;!-- 文章目录开始 --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (!<span class="attr">index</span>)&#123; %&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"toc"</span> <span class="attr">class</span>=<span class="string">"toc-article"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">strong</span> <span class="attr">class</span>=<span class="string">"toc-title"</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">__</span>('<span class="attr">contents</span>') %&gt;</span><span class="tag">&lt;/<span class="name">strong</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">%-</span> <span class="attr">toc</span>(<span class="attr">page.content</span>) %&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line">	<span class="comment">&lt;!-- 文章目录结束 --&gt;</span></div><div class="line">	</div><div class="line">	<span class="tag">&lt;<span class="name">%-</span> <span class="attr">post.content</span> %&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="第二步：添加CSS样式"><a href="#第二步：添加CSS样式" class="headerlink" title="第二步：添加CSS样式"></a>第二步：添加CSS样式</h2><p>打开 <strong>landscape-plus\source\css_partial</strong> 目录下的 <strong>article.styl</strong> 文件<br>在最后加入以下样式  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">.toc-article</div><div class="line">  background color-toc-bg</div><div class="line">  margin 2em 0 0 0.5em</div><div class="line">  padding 1em</div><div class="line">  strong</div><div class="line">    padding 0.3em 0</div><div class="line"></div><div class="line">#toc</div><div class="line">  line-height 1em</div><div class="line">  font-size 0.8em</div><div class="line">  float right // 如果想在左边，则把这里改成left即可</div><div class="line">  .toc</div><div class="line">    padding 0</div><div class="line">    li</div><div class="line">      list-style-type none</div><div class="line">      </div><div class="line">  .toc-child </div><div class="line">    padding-left 0.7em</div></pre></td></tr></table></figure>
+<h2 id="第三步：添加文章目录模块的背景颜色"><a href="#第三步：添加文章目录模块的背景颜色" class="headerlink" title="第三步：添加文章目录模块的背景颜色"></a>第三步：添加文章目录模块的背景颜色</h2><p>打开 <strong>landscape-plus\source\css</strong> 目录下的 <strong>_variables.styl</strong>文件<br>任意一个位置添加以下颜色变量<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">color-toc-bg = #eee</div></pre></td></tr></table></figure></p>
+<p>通过以上三步，即可在每一篇文章的右上角添加目录结构。还挺漂亮实用的<br>以上是个人瞎弄，欢迎留言指教或共同摸索。^_^  </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在文章中使用目录还是挺好的&lt;br&gt;通过查看目录,  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以更加清晰地了解文章的总体结体,  &lt;/li&gt;
+&lt;li&gt;读者可以很方便的进行选择性跳跃去阅读感兴趣的文章部分。  &lt;/li&gt;
+&lt;li&gt;快速阅读文章内容  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此，折
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://zlv.me/categories/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="http://zlv.me/tags/Hexo/"/>
+    
+      <category term="landscape+主题" scheme="http://zlv.me/tags/landscape-%E4%B8%BB%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>给Android开发者的Ubuntu12.04 64bit LTS</title>
+    <link href="http://zlv.me/posts/2014/07/31/04_%E7%BB%99Android%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84Ubuntu1204/"/>
+    <id>http://zlv.me/posts/2014/07/31/04_给Android开发者的Ubuntu1204/</id>
+    <published>2014-07-31T12:49:01.000Z</published>
+    <updated>2014-07-31T12:49:01.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>开发Android果然还是在Ubuntu下方便一点，以下搭建过程中所要注意的事项  </p>
+<h2 id="安装Ubuntu12-04-64bit-LTS"><a href="#安装Ubuntu12-04-64bit-LTS" class="headerlink" title="安装Ubuntu12.04 64bit LTS"></a>安装Ubuntu12.04 64bit LTS</h2><h3 id="分区情况"><a href="#分区情况" class="headerlink" title="分区情况"></a>分区情况</h3><ul>
+<li><p><strong>/swap (交换分区): 4G</strong><br>一般分配为内存的两倍或者跟内存大小一样，我机子的物理内存为4G，所以这里给交换分区的大小也是4G  </p>
+</li>
+<li><p><strong>/boot (boot目录): 200M~500M足矣</strong><br>我分配了200M，到现在只用了40M不到  </p>
+</li>
+<li><p><strong>/ (根目录): 10G～50G</strong><br>我们通过apt-get安装的很多软件其实都是安装到要目录的各个文件中的，所以如果这个目录如果分得太小的话，到后面会出现磁盘空间不足而无法通过apt-get安装程序的情况  </p>
+</li>
+<li><p><strong>/home (用户自己的主目录): 大小随便</strong><br>我把剩余的全给这个目录了。这个目录用于存放用户自己的东西, 就像windows里的除C盘以外的盘一样。下次重装Ubuntu时，只需要覆盖/boot和/这两个目录就好了。  </p>
+</li>
+</ul>
+<h3 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h3><p>安装过程中可以断开网络，这样可以更快的体验Ubuntu。<br>如果安装过程联网的话，会在安装的时候联网下载一些应用和语言包，网络慢的话会等很久。<br>其实这些东西可以在安装完之后自行安装。所以我一般都是断网安装，安装完系统之后，在配置系统的过程中去安装语言包。  </p>
+<h2 id="配置Ubuntu12-04-64bit-LTS"><a href="#配置Ubuntu12-04-64bit-LTS" class="headerlink" title="配置Ubuntu12.04 64bit LTS"></a>配置Ubuntu12.04 64bit LTS</h2><h3 id="配置-ia32-libs"><a href="#配置-ia32-libs" class="headerlink" title="配置 ia32-libs"></a>配置 ia32-libs</h3><p>因为安装的是64位的系统，但是有些应用需要32位的库进行支持。例如adb、aapt等工具都只支持32位的，至少目前是。<br>所以需要安装ia32-libs<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update <span class="comment">#更新软件库索引</span></div><div class="line">sudo apt-get upgrade <span class="comment">#更新软件</span></div><div class="line">sudo apt-get install ia32-libs <span class="comment">#安装ia32库</span></div></pre></td></tr></table></figure></p>
+<h2 id="配置Android开发环境"><a href="#配置Android开发环境" class="headerlink" title="配置Android开发环境"></a>配置Android开发环境</h2><h3 id="下载Java、Eclipse、ADT"><a href="#下载Java、Eclipse、ADT" class="headerlink" title="下载Java、Eclipse、ADT"></a>下载Java、Eclipse、ADT</h3><p>太过简单了，自己去官网下载就好。省略…  </p>
+<h3 id="配置Java和Android-SDK"><a href="#配置Java和Android-SDK" class="headerlink" title="配置Java和Android SDK"></a>配置Java和Android SDK</h3><p>下载好Java和Android SDK之后，需要对其进行配置，加入到环境中。<br>运行以下命令，修改profile文件  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vim /etc/profile</div></pre></td></tr></table></figure>
+<p>在文件的末尾添加以下内容:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> JAVA_HOME=/home/jeremyhe/software/jdk1.7.0_55 		<span class="comment">#Java目录</span></div><div class="line"><span class="built_in">export</span> ANDROID_HOME=/home/jeremyhe/software/android-sdk 	<span class="comment">#Android SDK目录</span></div><div class="line"><span class="built_in">export</span> CLASS_PATH=<span class="variable">$JAVE_HOME</span>/lib:<span class="variable">$JAVA_HOME</span>/jre/lib			<span class="comment">#Java库目录</span></div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/jre/bin:<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$ANDROID_HOME</span>/platform-tools:<span class="variable">$ANDROID_HOME</span>/tools:<span class="variable">$ANDROID_HOME</span>/build-tools:<span class="variable">$NODE_HOME</span>/bin</div></pre></td></tr></table></figure></p>
+<p>保存退出后再运行以下命令令其生效，或者注销/重启系统<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> /etc/profile</div></pre></td></tr></table></figure></p>
+<p><br>       </p>
+<h2 id="添加“在此打开终端”"><a href="#添加“在此打开终端”" class="headerlink" title="添加“在此打开终端”"></a>添加“在此打开终端”</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install nautilus-open-terminal</div></pre></td></tr></table></figure>
+<p>重启或者注销后生效。</p>
+<h2 id="更换destop为xfce4"><a href="#更换destop为xfce4" class="headerlink" title="更换destop为xfce4"></a>更换destop为xfce4</h2><p>Unity3d桌面实在是太慢了，自从用了xfce4之后，心情大好。非常适合配置不是特别高的机器。话说我4G内存的机器，处理器也不差，用起Unity3d卡得不能忍。<br>运行以下命令即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install xfce4</div></pre></td></tr></table></figure></p>
+<p>安装完成之后，在用户登录的时候，登录框右上角有一个小图标，从那里可以切换到xfce4。<br>有三个选项Unity3d、Unity2d和xfce4，选择之后，输入密码就可以登录了。<br>接下来就是对xfce4的一些配置了，如面板、快捷键、主题等，按个人喜好弄好就。  </p>
+<h2 id="更新ibus为fctix"><a href="#更新ibus为fctix" class="headerlink" title="更新ibus为fctix"></a>更新ibus为fctix</h2><p>fctix的五笔比较好用，而且启动速度相对快一点<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install fcitx</div></pre></td></tr></table></figure></p>
+<h2 id="Ubuntu-12-04安装Emacs24-3"><a href="#Ubuntu-12-04安装Emacs24-3" class="headerlink" title="Ubuntu 12.04安装Emacs24.3"></a>Ubuntu 12.04安装Emacs24.3</h2><p>参考文章：<a href="http://www.j-cn.me/posts/2015/02/03/09_Ubuntu-1204%E5%AE%89%E8%A3%85Emacs243/" target="_blank" rel="external">Ubuntu 12.04安装Emacs24.31</a>  </p>
+<h2 id="终极奥秘！"><a href="#终极奥秘！" class="headerlink" title="终极奥秘！"></a>终极奥秘！</h2><p>Ctrl+Alt+T直接打开终端，复制以下命令直接运行即可。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository ppa:fcwu-tw/ppa &amp;&amp; sudo apt-get update &amp;&amp; sudo apt-get upgrade &amp;&amp; sudo apt-get install ia32-libs gnome-session-fallback compizconfig-settings-manager nautilus-open-terminal fcitx git vim synapse privoxy multiget cmake python-dev build-essential  python-pip &amp;&amp; sudo pip install shadowsocks</div></pre></td></tr></table></figure></p>
+<p><br><br></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;开发Android果然还是在Ubuntu下方便一点，以下搭建过程中所要注意的事项  &lt;/p&gt;
+&lt;h2 id=&quot;安装Ubuntu12-04-64bit-LTS&quot;&gt;&lt;a href=&quot;#安装Ubuntu12-04-64bit-LTS&quot; class=&quot;headerlink&quot; tit
+    
+    </summary>
+    
+      <category term="Android" scheme="http://zlv.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://zlv.me/tags/Android/"/>
+    
+      <category term="Ubuntu" scheme="http://zlv.me/tags/Ubuntu/"/>
+    
+      <category term="Linux" scheme="http://zlv.me/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文章底部添加&quot;上一篇&quot;及&quot;下一篇&quot;</title>
+    <link href="http://zlv.me/posts/2014/07/25/03_%E6%96%87%E7%AB%A0%E5%BA%95%E9%83%A8%E6%B7%BB%E5%8A%A0%E4%B8%8A%E4%B8%80%E7%AF%87%E5%8F%8A%E4%B8%8B%E4%B8%80%E7%AF%87/"/>
+    <id>http://zlv.me/posts/2014/07/25/03_文章底部添加上一篇及下一篇/</id>
+    <published>2014-07-24T19:07:00.000Z</published>
+    <updated>2014-07-24T19:07:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>不太喜欢landscape+自带的文章导航,上下方式太占空间,整体感觉太丑.<br>个人比较喜欢简洁明了的风格  </p>
+<h2 id="创建导航footer-nav"><a href="#创建导航footer-nav" class="headerlink" title="创建导航footer-nav"></a>创建导航footer-nav</h2><p>目录切换到 <strong>themes\landscape-plus\layout_partial\post</strong>, 新建文件 <strong>footer-nav.ejs</strong><br>复制以下代码至 <strong>footer-nav.ejs</strong> 文件中,然后保存  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">post.next</span>)&#123; %&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">align</span>=<span class="string">"left"</span> <span class="attr">href</span>=<span class="string">"&lt;%- config.root %&gt;&lt;%- post.next.path %&gt;"</span> <span class="attr">id</span>=<span class="string">"article-nav-older"</span> <span class="attr">class</span>=<span class="string">"article-nav-link-wrap"</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">"left"</span> <span class="attr">class</span>=<span class="string">"article-nav-title"</span>&gt;</span>上一篇 <span class="tag">&lt;<span class="name">%=</span> <span class="attr">post.next.title</span> %&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> &#125; <span class="attr">else</span> &#123;%&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">align</span>=<span class="string">"left"</span> <span class="attr">id</span>=<span class="string">"article-nav-older"</span> <span class="attr">class</span>=<span class="string">"article-nav-link-wrap"</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">"left"</span> <span class="attr">class</span>=<span class="string">"article-nav-title"</span>&gt;</span>没有了<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">post.prev</span> &amp;&amp; <span class="attr">post.prev.title</span>)&#123; %&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">align</span>=<span class="string">"right"</span> <span class="attr">href</span>=<span class="string">"&lt;%- config.root %&gt;&lt;%- post.prev.path %&gt;"</span> <span class="attr">id</span>=<span class="string">"article-nav-newer"</span> <span class="attr">class</span>=<span class="string">"article-nav-link-wrap"</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">"right"</span> <span class="attr">class</span>=<span class="string">"article-nav-title"</span>&gt;</span>下一篇 <span class="tag">&lt;<span class="name">%=</span> <span class="attr">post.prev.title</span> %&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> &#125; <span class="attr">else</span> &#123;%&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">align</span>=<span class="string">"right"</span> <span class="attr">id</span>=<span class="string">"article-nav-newer"</span> <span class="attr">class</span>=<span class="string">"article-nav-link-wrap"</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">"right"</span> <span class="attr">class</span>=<span class="string">"article-nav-title"</span>&gt;</span>没有了<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="修改导航布局"><a href="#修改导航布局" class="headerlink" title="修改导航布局"></a>修改导航布局</h2><p>打开文件 <strong>themes/landscape-plus/source/css/_partial/article.styl</strong> ，<br>找到<strong>article-nav-newer</strong>和<strong>article-nav-older</strong>,并按以下进行修改  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#article-nav-older</span> &lt;!<span class="selector-tag">--</span> 将原来的<span class="selector-tag">newer</span>修改成<span class="selector-tag">older</span> <span class="selector-tag">--</span>&gt;</div><div class="line">  @<span class="keyword">media</span> mq-normal</div><div class="line">    float: left </div><div class="line">    text-align: right</div><div class="line">    padding-right: <span class="number">20px</span></div><div class="line"></div><div class="line">#article-nav-newer &lt;!-- 将原来的older修改成newer --&gt;</div><div class="line">  @media mq-normal</div><div class="line">    float: right </div><div class="line">    text-align: left</div><div class="line">    padding-left: <span class="number">20px</span></div></pre></td></tr></table></figure>
+<h2 id="添加导航"><a href="#添加导航" class="headerlink" title="添加导航"></a>添加导航</h2><p>打开文件 <strong>themes\landscape-plus\layout_partial\article.ejs</strong>, 并按以下位置添加代码<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"article-entry"</span> <span class="attr">itemprop</span>=<span class="string">"articleBody"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">post.excerpt</span> &amp;&amp; <span class="attr">index</span>)&#123; %&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">%-</span> <span class="attr">post.excerpt</span> %&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">theme.excerpt_link</span>)&#123; %&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"article-more-link"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%- config.root %&gt;&lt;%- post.path %&gt;#more"</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">__</span>('<span class="attr">excerpt_link</span>') %&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">%</span> &#125; <span class="attr">else</span> &#123; %&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">%-</span> <span class="attr">post.content</span> %&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 文章底部,这是新添加的 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (!<span class="attr">index</span>)&#123; %&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">"article-footer"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>('<span class="attr">post</span>/<span class="attr">footer-nav</span>') %&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> &#125; <span class="attr">else</span> &#123;%&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">p</span> <span class="attr">algin</span>=<span class="string">"center"</span>&gt;</span>=== THE END ===<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="删除原导航"><a href="#删除原导航" class="headerlink" title="删除原导航"></a>删除原导航</h2><p>还是刚才那个文件 <strong>article.ejs</strong>, 删除掉以下代码,然后保存即可<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (!<span class="attr">index</span>)&#123; %&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>('<span class="attr">post</span>/<span class="attr">nav</span>') %&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div></pre></td></tr></table></figure></p>
+<p>完事.看看效果吧</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;不太喜欢landscape+自带的文章导航,上下方式太占空间,整体感觉太丑.&lt;br&gt;个人比较喜欢简洁明了的风格  &lt;/p&gt;
+&lt;h2 id=&quot;创建导航footer-nav&quot;&gt;&lt;a href=&quot;#创建导航footer-nav&quot; class=&quot;headerlink&quot; title=
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://zlv.me/categories/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="http://zlv.me/tags/Hexo/"/>
+    
+      <category term="landscape+主题" scheme="http://zlv.me/tags/landscape-%E4%B8%BB%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android程序如何启动另一个程序</title>
+    <link href="http://zlv.me/posts/2014/07/24/02_Android%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8%E5%8F%A6%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/"/>
+    <id>http://zlv.me/posts/2014/07/24/02_Android程序如何启动另一个程序/</id>
+    <published>2014-07-24T10:20:28.000Z</published>
+    <updated>2014-07-24T10:20:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="使用ComponentName"><a href="#使用ComponentName" class="headerlink" title="使用ComponentName"></a>使用ComponentName</h2><p>使用的代码如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">ComponentName cn = <span class="keyword">new</span> ComponentName(packageName, className);</div><div class="line">intent.setComponent(cn);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure></p>
+<p>例如我们要启动B程序的MainActivity<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">ComponentName cn = <span class="keyword">new</span> ComponentName(<span class="string">"com.example.b"</span>, <span class="string">"com.example.b.MainActivity"</span>);</div><div class="line">intent.setComponent(cn);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure></p>
+<p>如果启动的Activity不是MainActivity,那么我们要保证此Activity是export的。<br>否则会报异常<code>java.lang.SecurityException: Permission Denial: starting Intent</code>  </p>
+<p>而要实现Activity为export有两个办法：  </p>
+<ol>
+<li><p>在AndroidManifest中声明此Activity为export   </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">"com.example.b.TestActivity"</span> <span class="attr">android:exported</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在AndroidManifest中为此Activity添加intent-filter，类似默认的MainActivity一样  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"com.example.b.start"</span>&gt;</span><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line">``` </div><div class="line">  </div><div class="line"></div><div class="line">## 使用Action</div><div class="line">第二种启动方式就是直接使用Action,这种方法就比较简单了。  </div><div class="line">在B程序的Activity中加入action  </div><div class="line">```xml</div><div class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"com.example.b.start"</span>&gt;</span><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>然后在A程序中<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent(<span class="string">"com.example.b.start"</span>);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure></p>
+<h2 id="以新的task启动程序"><a href="#以新的task启动程序" class="headerlink" title="以新的task启动程序"></a>以新的task启动程序</h2><p>在启动外部程序的时候，同样也是可以设置启动的flag的<br>例如添加FLAG_ACTIVITY_NEW_TASK标识<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent(<span class="string">"com.example.b.start"</span>);</div><div class="line">intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure></p>
+<p>添加这个标识，区别在于被启动的程序(DemoB)与发起启动的程序(DemoA)是否在同一个task里。<br>表现出来的区别就是当启动外部程序后，按home键退出到桌面，重新打开DemoA程序，<br>如果带有FLAG_ACTIVITY_NEW_TASK标识，则进入的是DemoA之前的界面<br>而如果没有带FLAG_ACTIVITY_NEW_TASK标识，则会进入到DemoB的界面当中.  </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;使用ComponentName&quot;&gt;&lt;a href=&quot;#使用ComponentName&quot; class=&quot;headerlink&quot; title=&quot;使用ComponentName&quot;&gt;&lt;/a&gt;使用ComponentName&lt;/h2&gt;&lt;p&gt;使用的代码如下&lt;br&gt;&lt;figure
+    
+    </summary>
+    
+      <category term="Android" scheme="http://zlv.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://zlv.me/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文章标题底下添加评论及分享按钮</title>
+    <link href="http://zlv.me/posts/2014/07/24/01_%E6%96%87%E7%AB%A0%E6%A0%87%E9%A2%98%E5%BA%95%E4%B8%8B%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8F%8A%E5%88%86%E4%BA%AB%E6%8C%89%E9%92%AE/"/>
+    <id>http://zlv.me/posts/2014/07/24/01_文章标题底下添加评论及分享按钮/</id>
+    <published>2014-07-24T02:07:00.000Z</published>
+    <updated>2014-07-24T10:07:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>  landscape+主题默认的评论及分享按钮是在文章下方的，而评论框一般情况下也在文章下文，这就这个评论按钮有点多余。<br>参考csdn博客等，评论按钮一般都是在文章标题下面的，用户可以直接点击然后跳转至评论框进行评论。因此决定将评论移至文章标题下面。  </p>
+<h2 id="修改article-ejs"><a href="#修改article-ejs" class="headerlink" title="修改article.ejs"></a>修改article.ejs</h2><p>打开 <strong>themes/landscape-plus/layout/_partial/article.ejs</strong><br>找到以下代码<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">post.link</span> || <span class="attr">post.title</span>)&#123; %&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">header</span> <span class="attr">class</span>=<span class="string">"article-header"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>('<span class="attr">post</span>/<span class="attr">title</span>', &#123;<span class="attr">class_name:</span> '<span class="attr">article-title</span>'&#125;) %&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div></pre></td></tr></table></figure></p>
+<p>修改成如下，然后保存.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">post.link</span> || <span class="attr">post.title</span>)&#123; %&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">header</span> <span class="attr">class</span>=<span class="string">"article-header"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>('<span class="attr">post</span>/<span class="attr">title</span>', &#123;<span class="attr">class_name:</span> '<span class="attr">article-title</span>'&#125;) %&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line"><span class="comment">&lt;!-- header-footer --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">"header-footer"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">data-url</span>=<span class="string">"&lt;%- post.permalink %&gt;"</span> <span class="attr">data-id</span>=<span class="string">"&lt;%= post._id %&gt;"</span> <span class="attr">class</span>=<span class="string">"article-share-link"</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">__</span>('<span class="attr">share</span>') %&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (!<span class="attr">index</span> &amp;&amp; <span class="attr">post.comments</span>)&#123; %&gt;</span></div><div class="line">	<span class="comment">&lt;!-- ds-thread为多说对话框的id，具体怎么添加多说对话框可以百度--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%- post.permalink %&gt;#ds-thread"</span> <span class="attr">class</span>=<span class="string">"article-comment-link"</span>&gt;</span>评论<span class="tag">&lt;/<span class="name">a</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>('<span class="attr">post</span>/<span class="attr">tag</span>') %&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="修改article-styl"><a href="#修改article-styl" class="headerlink" title="修改article.styl"></a>修改article.styl</h2><p>打开文件<strong>themes/landscape-plus/source/css/_partial/article.styl</strong><br>在末尾添加如下代码<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.header-footer</span></div><div class="line">  <span class="selector-tag">clearfix</span>()</div><div class="line">  <span class="selector-tag">font-size</span>: 0<span class="selector-class">.85em</span></div><div class="line">  <span class="selector-tag">line-height</span>: <span class="selector-tag">line-height</span></div><div class="line">  <span class="selector-tag">padding-top</span>: <span class="selector-tag">line-height</span></div><div class="line">  <span class="selector-tag">margin</span>: 0 30<span class="selector-tag">px</span> 8<span class="selector-tag">px</span> 25<span class="selector-tag">px</span></div><div class="line">  <span class="selector-tag">a</span></div><div class="line">    <span class="selector-tag">color</span>: <span class="selector-tag">color-grey</span></div><div class="line">    <span class="selector-tag">text-decoration</span>: <span class="selector-tag">none</span></div><div class="line">    &amp;<span class="selector-pseudo">:hover</span></div><div class="line">      <span class="selector-tag">color</span>: <span class="selector-tag">color-default</span></div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;  landscape+主题默认的评论及分享按钮是在文章下方的，而评论框一般情况下也在文章下文，这就这个评论按钮有点多余。&lt;br&gt;参考csdn博客等，评论按钮一般都是在文章标题下面的，用户可以直接点击然后跳转至评论框进行评论。因此决定将评论移至文章标题下面。  &lt;/p&gt;
+&lt;
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://zlv.me/categories/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="http://zlv.me/tags/Hexo/"/>
+    
+      <category term="landscape+主题" scheme="http://zlv.me/tags/landscape-%E4%B8%BB%E9%A2%98/"/>
+    
+  </entry>
+  
+</feed>
