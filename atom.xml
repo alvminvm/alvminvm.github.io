@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zlv.me/"/>
-  <updated>2016-11-26T09:09:47.000Z</updated>
+  <updated>2017-05-20T08:39:16.000Z</updated>
   <id>http://zlv.me/</id>
   
   <author>
@@ -14,6 +14,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>快速解决 Gradle 下载失败问题</title>
+    <link href="http://zlv.me/posts/2017/05/20/16_cant_download_gradle/"/>
+    <id>http://zlv.me/posts/2017/05/20/16_cant_download_gradle/</id>
+    <published>2017-05-20T08:20:00.000Z</published>
+    <updated>2017-05-20T08:39:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>每一次，当我们在新的环境中搭建 Android 开发环境并尝试运行或者当我们更换 gradle 版本时，<br>总是会有一个漫长…漫长…漫长的下载 gradle 过程。<br><img src="/images/16/1.png" alt=""></p>
+<p>怎么办？难道先去睡一觉？<br>其实解决办法是有有两个。</p>
+<h2 id="使用已存在的-gradle-版本"><a href="#使用已存在的-gradle-版本" class="headerlink" title="使用已存在的 gradle 版本"></a>使用已存在的 gradle 版本</h2><p>打开目录 <code>~/.gradle/wrapper/dists</code> 查看当前已经下载了什么版本的 gradle<br>修改项目的 <code>gradle/wrapper/gradle-wrapper.properties</code> 文件<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">distributionUrl=https\://services.gradle.org/distributions/gradle-3.3-all.zip</div><div class="line"><span class="section"># 修改为当前已经存在的版本，假设当前已经存在的版本为2.14.1</span></div><div class="line">distributionUrl=https\://services.gradle.org/distributions/gradle-2.14.1-all.zip</div></pre></td></tr></table></figure></p>
+<p>重新打开 Android Studio 或者重新运行 assemble 即可。</p>
+<h2 id="手动下载-gradle"><a href="#手动下载-gradle" class="headerlink" title="手动下载 gradle"></a>手动下载 gradle</h2><p>如果是完全全新的环境，并没有已经下载好的 gradle 版本或者必须使用指定版本的 gradle 的话<br>那我们直接使用迅雷等下载工具下载，这样会快好多。</p>
+<p><img src="/images/16/2.png" alt=""></p>
+<p>下载完成后，将 zip 文件移至 gradle 指定版本目录下即可。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mv gradle-3.3-all.zip ~/.gradle/wrapper/dists/gradle-3.3-all/55gk2rcmfc6p2dg9u9ohc3hw9/gradle-3.3-all.zip</div></pre></td></tr></table></figure></p>
+<p>这里说明一下，以上只适用于 Linux 平台和 Mac 平台。　　　　<br>Windows放哪？赶紧换系统吧(自行解决，Windows 也有类似的目录)。<br>再有一点，中间的<code>55gk2rcmfc6p2dg9u9ohc3hw9</code>每个人的都是不一样的，这是随机生成的。    </p>
+<p>接下来我们重新执行 assemble 命令，就会发现，直接跳过了原来的 Download 阶段，直接对我们刚才下载的 gradle-3-3.zip 文件进行了解压。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ./gradlew app:assemble                                   </div><div class="line">Unzipping /Users/jeremyhe/.gradle/wrapper/dists/gradle-3.3-all/55gk2rcmfc6p2dg9u9ohc3hw9/gradle-3.3-all.zip to /Users/jeremyhe/.gradle/wrapper/dists/gradle-3.3-all/55gk2rcmfc6p2dg9u9ohc3hw9</div><div class="line">Set executable permissions <span class="keyword">for</span>: /Users/jeremyhe/.gradle/wrapper/dists/gradle-3.3-all/55gk2rcmfc6p2dg9u9ohc3hw9/gradle-3.3/bin/gradle</div><div class="line">Starting a Gradle Daemon (subsequent builds will be faster)</div></pre></td></tr></table></figure></p>
+<p>快速无法解决下载 Gradle 问题</p>
+<p>以上就是本文的全部内容。如果还有其他更好的方法，欢迎告知。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;每一次，当我们在新的环境中搭建 Android 开发环境并尝试运行或者当我们更换 gradle 版本时，&lt;br&gt;总是会有一个漫长…漫长…漫长的下载 gradle 过程。&lt;br&gt;&lt;img src=&quot;/images/16/1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;怎么办？难道
+    
+    </summary>
+    
+      <category term="Android" scheme="http://zlv.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://zlv.me/tags/Android/"/>
+    
+      <category term="Gradle" scheme="http://zlv.me/tags/Gradle/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux(Ubuntu),Android日常工作碎碎念</title>
