@@ -1,4 +1,208 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 倍数提高工作效率的Android Studio奇技 · Jeremy'Memo</title><meta name="description" content="倍数提高工作效率的Android Studio奇技 - JeremyHe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://zlv.me/atom.xml" title="Jeremy'Memo"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/logo.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">INDEX</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="/about.html" target="_self" class="nav-list-link">ABOUT</a></li><li class="nav-list-item"><a href="https://github.com/jeremyhe-cn" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">倍数提高工作效率的Android Studio奇技</h1><div class="post-info">Jul 13, 2015</div><div class="post-content"><p>这是从Philippe Breault的系列文章《Android Studio Tips Of the Day》中提取出来的自认为精华的部分。<br>这些技巧在实际应用中能够非常大的提高工作效率。<br><a id="more"></a></p>
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>倍数提高工作效率的Android Studio奇技 | Jeremy&#39;Memo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Android,Android Studio," />
+  
+
+  <meta name="description" content="这是从Philippe Breault的系列文章《Android Studio Tips Of the Day》中提取出来的自认为精华的部分。这些技巧在实际应用中能够非常大的提高工作效率。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="倍数提高工作效率的Android Studio奇技">
+<meta property="og:url" content="http://zlv.me/posts/2015/07/13/14_android-studio-tips/index.html">
+<meta property="og:site_name" content="Jeremy'Memo">
+<meta property="og:description" content="这是从Philippe Breault的系列文章《Android Studio Tips Of the Day》中提取出来的自认为精华的部分。这些技巧在实际应用中能够非常大的提高工作效率。">
+<meta property="og:image" content="http://zlv.me/images/14/14-ctrl+f12.gif">
+<meta property="og:image" content="http://zlv.me/images/14/14-ctrl+alt+h.gif">
+<meta property="og:image" content="http://zlv.me/images/14/14-ctrl+shift+i.gif">
+<meta property="og:image" content="http://zlv.me/images/14/14-Bookmarks.gif">
+<meta property="og:image" content="http://zlv.me/images/14/14-FindActions.gif">
+<meta property="og:image" content="http://zlv.me/images/14/14-MoveLinesUpDown.gif">
+<meta property="og:image" content="http://zlv.me/images/14/14-vcspopup.gif">
+<meta property="og:image" content="http://zlv.me/images/14/14-hideallwindows.gif">
+<meta property="og:image" content="http://zlv.me/images/14/14-rename.gif">
+<meta property="og:image" content="http://zlv.me/images/14/14-conditionalbreakpoint.gif">
+<meta property="og:image" content="http://zlv.me/images/14/14-attachdebugger.gif">
+<meta property="og:image" content="http://zlv.me/images/14/14-mouse_evaluate_expression.gif">
+<meta property="og:image" content="http://zlv.me/images/14/14-analyzestacktrace.gif">
+<meta property="og:image" content="http://zlv.me/images/14/14-analyzedataflow.gif">
+<meta property="og:image" content="http://zlv.me/images/14/14-multiselection.gif">
+<meta property="og:image" content="http://zlv.me/images/14/14-columnselection.gif">
+<meta property="og:image" content="http://zlv.me/images/14/14-codecompletionentertab.gif">
+<meta property="og:updated_time" content="2015-07-13T13:27:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="倍数提高工作效率的Android Studio奇技">
+<meta name="twitter:description" content="这是从Philippe Breault的系列文章《Android Studio Tips Of the Day》中提取出来的自认为精华的部分。这些技巧在实际应用中能够非常大的提高工作效率。">
+<meta name="twitter:image" content="http://zlv.me/images/14/14-ctrl+f12.gif">
+
+  
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile"></span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text"></span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            文章
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于快捷键"><span class="toc-text">关于快捷键</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-File-Structure-Popup"><span class="toc-text">The File Structure Popup</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Call-Hierarchy-Popup"><span class="toc-text">The Call Hierarchy Popup</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Quick-Definition-Lookup"><span class="toc-text">Quick Definition Lookup</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bookmarks"><span class="toc-text">Bookmarks!</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Find-Actions"><span class="toc-text">Find Actions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Move-Lines-Up-Down"><span class="toc-text">Move Lines Up/Down</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lines-Edit"><span class="toc-text">Lines Edit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VCS-Operations-Popup"><span class="toc-text">VCS Operations Popup</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hide-All-Panels"><span class="toc-text">Hide All Panels</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parameter-Info"><span class="toc-text">Parameter Info</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rename"><span class="toc-text">Rename</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条件断点"><span class="toc-text">条件断点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进入调试模式"><span class="toc-text">进入调试模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速查看变量的值"><span class="toc-text">快速查看变量的值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析堆栈信息"><span class="toc-text">分析堆栈信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析某个值的来源"><span class="toc-text">分析某个值的来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多行编辑"><span class="toc-text">多行编辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#列编辑"><span class="toc-text">列编辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Enter和Tab在代码提示时的区别"><span class="toc-text">Enter和Tab在代码提示时的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Links"><span class="toc-text">Links</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-14_android-studio-tips" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">倍数提高工作效率的Android Studio奇技</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2015.07.13</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>JeremyHe</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>这是从Philippe Breault的系列文章《Android Studio Tips Of the Day》中提取出来的自认为精华的部分。<br>这些技巧在实际应用中能够非常大的提高工作效率。<br><a id="more"></a></p>
 <h2 id="关于快捷键"><a href="#关于快捷键" class="headerlink" title="关于快捷键"></a>关于快捷键</h2><h3 id="The-File-Structure-Popup"><a href="#The-File-Structure-Popup" class="headerlink" title="The File Structure Popup"></a>The File Structure Popup</h3><blockquote>
 <p> <strong>ctrl+f12</strong>   </p>
 </blockquote>
@@ -64,11 +268,183 @@
 <li><a href="http://www.developerphil.com/android-studio-tips-of-the-day-roundup-5/title" target="_blank" rel="external">Android Studio Tips Of the Day - Roundup #5</a>  </li>
 <li><a href="http://www.developerphil.com/android-studio-tips-of-the-day-roundup-6/title" target="_blank" rel="external">Android Studio Tips Of the Day - Roundup #6</a>  </li>
 </ol>
-</div></article></div></main><footer><div class="paginator"><a href="/posts/2016/06/06/15_nag_about-linux-ubuntu-android/" class="prev">PREV</a><a href="/posts/2015/06/10/13_tips-when-using-repeating-alarms/" class="next">NEXT</a></div><cloud-tie-wrapper class="cloud-tie-wrapper"></cloud-tie-wrapper><script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script><script>var cloudTieConfig = {
-    url: document.location.href,
-    sourceId: "posts/2015/07/13/14_android-studio-tips/",
+
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">严于己，宽于人｡◕‿◕｡</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/posts/2015/06/10/13_tips-when-using-repeating-alarms/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/posts/2016/06/06/15_nag_about-linux-ubuntu-android/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              文章
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+
+
+
+    
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: document.location.href, 
+    sourceId: "",
     productKey: "1bc56f9599fa479a890196981ff9f0b4",
     target: "cloud-tie-wrapper"
-};
-var yunManualLoad = true;
-Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);</script><div class="copyright"><p>© 2015 - 2017 <a href="http://zlv.me">JeremyHe</a>, All Rights Reserved.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+  };
+</script>
+<script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+
+
+    
+	
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

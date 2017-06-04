@@ -1,12 +1,373 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 文章标题底下添加评论及分享按钮 · Jeremy'Memo</title><meta name="description" content="文章标题底下添加评论及分享按钮 - JeremyHe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://zlv.me/atom.xml" title="Jeremy'Memo"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/logo.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">INDEX</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="/about.html" target="_self" class="nav-list-link">ABOUT</a></li><li class="nav-list-item"><a href="https://github.com/jeremyhe-cn" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">文章标题底下添加评论及分享按钮</h1><div class="post-info">Jul 24, 2014</div><div class="post-content"><p>  landscape+主题默认的评论及分享按钮是在文章下方的，而评论框一般情况下也在文章下文，这就这个评论按钮有点多余。<br>参考csdn博客等，评论按钮一般都是在文章标题下面的，用户可以直接点击然后跳转至评论框进行评论。因此决定将评论移至文章标题下面。  </p>
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>文章标题底下添加评论及分享按钮 | Jeremy&#39;Memo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Hexo,landscape+主题," />
+  
+
+  <meta name="description" content="landscape+主题默认的评论及分享按钮是在文章下方的，而评论框一般情况下也在文章下文，这就这个评论按钮有点多余。参考csdn博客等，评论按钮一般都是在文章标题下面的，用户可以直接点击然后跳转至评论框进行评论。因此决定将评论移至文章标题下面。  
+修改article.ejs打开 themes/landscape-plus/layout/_partial/article.ejs找到以下代码1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文章标题底下添加评论及分享按钮">
+<meta property="og:url" content="http://zlv.me/posts/2014/07/24/01_文章标题底下添加评论及分享按钮/index.html">
+<meta property="og:site_name" content="Jeremy'Memo">
+<meta property="og:description" content="landscape+主题默认的评论及分享按钮是在文章下方的，而评论框一般情况下也在文章下文，这就这个评论按钮有点多余。参考csdn博客等，评论按钮一般都是在文章标题下面的，用户可以直接点击然后跳转至评论框进行评论。因此决定将评论移至文章标题下面。  
+修改article.ejs打开 themes/landscape-plus/layout/_partial/article.ejs找到以下代码1">
+<meta property="og:updated_time" content="2014-07-24T10:07:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文章标题底下添加评论及分享按钮">
+<meta name="twitter:description" content="landscape+主题默认的评论及分享按钮是在文章下方的，而评论框一般情况下也在文章下文，这就这个评论按钮有点多余。参考csdn博客等，评论按钮一般都是在文章标题下面的，用户可以直接点击然后跳转至评论框进行评论。因此决定将评论移至文章标题下面。  
+修改article.ejs打开 themes/landscape-plus/layout/_partial/article.ejs找到以下代码1">
+
+  
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile"></span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text"></span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            文章
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#修改article-ejs"><span class="toc-text">修改article.ejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改article-styl"><span class="toc-text">修改article.styl</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-01_文章标题底下添加评论及分享按钮" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">文章标题底下添加评论及分享按钮</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2014.07.24</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>JeremyHe</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>  landscape+主题默认的评论及分享按钮是在文章下方的，而评论框一般情况下也在文章下文，这就这个评论按钮有点多余。<br>参考csdn博客等，评论按钮一般都是在文章标题下面的，用户可以直接点击然后跳转至评论框进行评论。因此决定将评论移至文章标题下面。  </p>
 <h2 id="修改article-ejs"><a href="#修改article-ejs" class="headerlink" title="修改article.ejs"></a>修改article.ejs</h2><p>打开 <strong>themes/landscape-plus/layout/_partial/article.ejs</strong><br>找到以下代码<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">post.link</span> || <span class="attr">post.title</span>)&#123; %&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">header</span> <span class="attr">class</span>=<span class="string">"article-header"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>('<span class="attr">post</span>/<span class="attr">title</span>', &#123;<span class="attr">class_name:</span> '<span class="attr">article-title</span>'&#125;) %&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div></pre></td></tr></table></figure></p>
 <p>修改成如下，然后保存.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">post.link</span> || <span class="attr">post.title</span>)&#123; %&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">header</span> <span class="attr">class</span>=<span class="string">"article-header"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>('<span class="attr">post</span>/<span class="attr">title</span>', &#123;<span class="attr">class_name:</span> '<span class="attr">article-title</span>'&#125;) %&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line"><span class="comment">&lt;!-- header-footer --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">"header-footer"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">data-url</span>=<span class="string">"&lt;%- post.permalink %&gt;"</span> <span class="attr">data-id</span>=<span class="string">"&lt;%= post._id %&gt;"</span> <span class="attr">class</span>=<span class="string">"article-share-link"</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">__</span>('<span class="attr">share</span>') %&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (!<span class="attr">index</span> &amp;&amp; <span class="attr">post.comments</span>)&#123; %&gt;</span></div><div class="line">	<span class="comment">&lt;!-- ds-thread为多说对话框的id，具体怎么添加多说对话框可以百度--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%- post.permalink %&gt;#ds-thread"</span> <span class="attr">class</span>=<span class="string">"article-comment-link"</span>&gt;</span>评论<span class="tag">&lt;/<span class="name">a</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>('<span class="attr">post</span>/<span class="attr">tag</span>') %&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <h2 id="修改article-styl"><a href="#修改article-styl" class="headerlink" title="修改article.styl"></a>修改article.styl</h2><p>打开文件<strong>themes/landscape-plus/source/css/_partial/article.styl</strong><br>在末尾添加如下代码<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.header-footer</span></div><div class="line">  <span class="selector-tag">clearfix</span>()</div><div class="line">  <span class="selector-tag">font-size</span>: 0<span class="selector-class">.85em</span></div><div class="line">  <span class="selector-tag">line-height</span>: <span class="selector-tag">line-height</span></div><div class="line">  <span class="selector-tag">padding-top</span>: <span class="selector-tag">line-height</span></div><div class="line">  <span class="selector-tag">margin</span>: 0 30<span class="selector-tag">px</span> 8<span class="selector-tag">px</span> 25<span class="selector-tag">px</span></div><div class="line">  <span class="selector-tag">a</span></div><div class="line">    <span class="selector-tag">color</span>: <span class="selector-tag">color-grey</span></div><div class="line">    <span class="selector-tag">text-decoration</span>: <span class="selector-tag">none</span></div><div class="line">    &amp;<span class="selector-pseudo">:hover</span></div><div class="line">      <span class="selector-tag">color</span>: <span class="selector-tag">color-default</span></div></pre></td></tr></table></figure></p>
-</div></article></div></main><footer><div class="paginator"><a href="/posts/2014/07/24/02_Android程序如何启动另一个程序/" class="prev">PREV</a></div><cloud-tie-wrapper class="cloud-tie-wrapper"></cloud-tie-wrapper><script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script><script>var cloudTieConfig = {
-    url: document.location.href,
-    sourceId: "posts/2014/07/24/01_文章标题底下添加评论及分享按钮/",
+
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">严于己，宽于人｡◕‿◕｡</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="hide pull-left" href="/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/posts/2014/07/24/02_Android程序如何启动另一个程序/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              文章
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+
+
+
+    
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: document.location.href, 
+    sourceId: "",
     productKey: "1bc56f9599fa479a890196981ff9f0b4",
     target: "cloud-tie-wrapper"
-};
-var yunManualLoad = true;
-Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);</script><div class="copyright"><p>© 2015 - 2017 <a href="http://zlv.me">JeremyHe</a>, All Rights Reserved.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+  };
+</script>
+<script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+
+
+    
+	
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
