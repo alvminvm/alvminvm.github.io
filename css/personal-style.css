@@ -1,6 +1,9 @@
 .article-content img {
-    border-radius: 4px;
-    box-shadow: 0 0 12px 1px darkgrey;
+	border-radius: 3px;
+	box-shadow: 0 0 8px 1px lightgrey;
+    background: #fff;
+    border: 1px solid lightgrey;
+    padding: 8px;
 }
 
 .article-content h2 {
