@@ -19,7 +19,7 @@
 修改article.ejs打开 themes/landscape-plus/layout/_partial/article.ejs找到以下代码1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文章标题底下添加评论及分享按钮">
-<meta property="og:url" content="http://zlv.me/posts/2014/07/24/01_文章标题底下添加评论及分享按钮/index.html">
+<meta property="og:url" content="http://alzz.me/posts/2014/07/24/01_文章标题底下添加评论及分享按钮/index.html">
 <meta property="og:site_name" content="Jeremy'Memo">
 <meta property="og:description" content="landscape+主题默认的评论及分享按钮是在文章下方的，而评论框一般情况下也在文章下文，这就这个评论按钮有点多余。参考csdn博客等，评论按钮一般都是在文章标题下面的，用户可以直接点击然后跳转至评论框进行评论。因此决定将评论移至文章标题下面。  
 修改article.ejs打开 themes/landscape-plus/layout/_partial/article.ejs找到以下代码1">
@@ -171,6 +171,11 @@
 
 
       
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.alzz.com/posts/2014/07/24/01_文章标题底下添加评论及分享按钮/#disqus_thread"></a>
+        </span>
+      
 
       
       <i class="fa fa-eye"></i> 
@@ -314,6 +319,29 @@
   
       <div class="fexo-comments comments-post">
     
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'disqus_Bt7tDMpkoM';
+    
+    var disqus_url = 'http://alzz.me/posts/2014/07/24/01_文章标题底下添加评论及分享按钮/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//disqus_Bt7tDMpkoM.disqus.com/count.js" async></script>
+
+
 
     
 
@@ -321,17 +349,6 @@
 
 
     
-  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script>
-  var cloudTieConfig = {
-    url: document.location.href, 
-    sourceId: "",
-    productKey: "1bc56f9599fa479a890196981ff9f0b4",
-    target: "cloud-tie-wrapper"
-  };
-</script>
-<script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
-
 
     
 	
