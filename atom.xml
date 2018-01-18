@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://alzz.me/"/>
-  <updated>2017-06-05T15:56:51.000Z</updated>
+  <updated>2018-01-18T15:16:16.000Z</updated>
   <id>http://alzz.me/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://alzz.me/posts/2017/05/20/16_cant_download_gradle/"/>
     <id>http://alzz.me/posts/2017/05/20/16_cant_download_gradle/</id>
     <published>2017-05-20T08:20:00.000Z</published>
-    <updated>2017-06-05T15:56:51.000Z</updated>
+    <updated>2018-01-18T15:16:16.000Z</updated>
     
     <content type="html"><![CDATA[<p>每一次，当我们在新的环境中搭建 Android 开发环境并尝试运行或者当我们更换 gradle 版本时，<br>总是会有一个漫长…漫长…漫长的下载 gradle 过程。</p>
 <p><img src="/images/16/1.png" alt=""></p>

@@ -168,11 +168,6 @@
 
 
       
-        <span>
-          <i class="icon-comment"></i>
-          <a href="http://www.alzz.com/posts/2015/05/19/11_fragment-in-android-developer/#disqus_thread"></a>
-        </span>
-      
 
       
       <i class="fa fa-eye"></i> 
@@ -199,6 +194,13 @@
 <h2 id="Activity与Fragment交互、Fragment与Fragment交互"><a href="#Activity与Fragment交互、Fragment与Fragment交互" class="headerlink" title="Activity与Fragment交互、Fragment与Fragment交互"></a>Activity与Fragment交互、Fragment与Fragment交互</h2><p>每一个Fragment都是一个独立的可重用的UI组件，不应当与其他外部的组件产生强耦合。<br>因此，Fragment与Activity的交互同一些控件类似，都是采用提供接口的方式进行实现。而Activity则可直接调用Fragment的公有方法。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HeadlinesFragment</span> <span class="keyword">extends</span> <span class="title">ListFragment</span> </span>&#123;</div><div class="line">    OnHeadlineSelectedListener mCallback;</div><div class="line"></div><div class="line">    <span class="comment">// 对外提供的接口  </span></div><div class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnHeadlineSelectedListener</span> </span>&#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onArticleSelected</span><span class="params">(<span class="keyword">int</span> position)</span></span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAttach</span><span class="params">(Activity activity)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onAttach(activity);</div><div class="line">        </div><div class="line">        <span class="comment">// 检查外部的Activity是否实现了接口，如果实现，则直接保存至mCallback中</span></div><div class="line">		<span class="keyword">if</span> (activity <span class="keyword">instanceof</span> OnHeadlineSelectedListener) &#123;</div><div class="line">            mCallback = (OnHeadlineSelectedListener) activity;</div><div class="line">        &#125; </div><div class="line">	&#125;</div><div class="line">    </div><div class="line">	<span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onListItemClick</span><span class="params">(ListView l, View v, <span class="keyword">int</span> position, <span class="keyword">long</span> id)</span> </span>&#123;</div><div class="line">        <span class="comment">// 当需要的时候，调用接口，通知实现了此接口的Activity  </span></div><div class="line">		<span class="keyword">if</span> (mCallback != <span class="keyword">null</span>) &#123;</div><div class="line">			mCallback.onArticleSelected(position);</div><div class="line">		&#125;</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>而Activity则采用直接调用Fragment公有方法的方式与Fragment进行交互<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span></span></div><div class="line">        <span class="keyword">implements</span> <span class="title">HeadlinesFragment</span>.<span class="title">OnHeadlineSelectedListener</span>&#123;</div><div class="line">    ...</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onArticleSelected</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        ArticleFragment articleFrag = (ArticleFragment)</div><div class="line">                getSupportFragmentManager().findFragmentById(R.id.article_fragment);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (articleFrag != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="comment">// 直接调用ArticleFragment的updateArticleView方法进行文章的更新  </span></div><div class="line">            articleFrag.updateArticleView(position);</div><div class="line">        &#125; </div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
+	<blockquote>
+		<p>
+			<strong>本文链接：</strong><a href="http://www.alzz.com/posts/2015/05/19/11_fragment-in-android-developer/">http://www.alzz.com/posts/2015/05/19/11_fragment-in-android-developer/</a>
+			</br>
+			<strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 CC BY-NC-SA 3.0 许可协议。转载请注明出处！
+		</p>
+	</blockquote>
     
   </div>
 </article>
@@ -207,13 +209,13 @@
    
   <div class="text-center donation">
     <div class="inner-donation">
-      <span class="btn-donation">支持一下</span>
+      <span class="btn-donation">一起 Coding ???</span>
       <div class="donation-body">
         <div class="tip text-center">严于己，宽于人｡◕‿◕｡</div>
         <ul class="theme.donation.items.length">
         
           <li class="item">
-            <img src="/images/qr-alipay.png" alt="">
+            <img src="/images/qr-wechat.png" alt="">
           </li>
         
         </ul>
@@ -321,29 +323,6 @@
   
       <div class="fexo-comments comments-post">
     
-  <section class="disqus-comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-  </section>
-
-  <script>
-    var disqus_shortname = 'disqus_Bt7tDMpkoM';
-    
-    var disqus_url = 'http://alzz.me/posts/2015/05/19/11_fragment-in-android-developer/';
-    
-    (function(){
-      var dsq = document.createElement('script');
-      dsq.type = 'text/javascript';
-      dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  </script>
-
-  <script id="dsq-count-scr" src="//disqus_Bt7tDMpkoM.disqus.com/count.js" async></script>
-
-
 
     
 
@@ -354,6 +333,32 @@
 
     
 	
+    
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <div id="comment" class="vcomment" ></div>
+    <script>
+        var notify = 'true' == true ? true : false;
+        var verify = 'true' == true ? true : false;
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+            return GUEST_INFO.indexOf(item) > -1
+        });
+        guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+        window.valine = new Valine({
+            el: '.vcomment',
+            notify: notify,
+            verify: verify,
+            appId: "FkkXjkB8RmuNQxEhqk6BM3Ww-gzGzoHsz",
+            appKey: "ReNBuhWx88Con7IipJ5tLg79",
+            avatar:'mm',
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info:guest_info,
+            pageSize:'10'
+        });
+    </script>
+  	
   </div>
 
   

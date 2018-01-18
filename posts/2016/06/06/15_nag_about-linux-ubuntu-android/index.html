@@ -170,11 +170,6 @@
 
 
       
-        <span>
-          <i class="icon-comment"></i>
-          <a href="http://www.alzz.com/posts/2016/06/06/15_nag_about-linux-ubuntu-android/#disqus_thread"></a>
-        </span>
-      
 
       
       <i class="fa fa-eye"></i> 
@@ -215,6 +210,13 @@
 <p>在 Native Debug 状态下进行断点，然后切换到lldb 标签页，输入以下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">set</span> <span class="built_in">set</span> target.max-string-summary-length 10000</div></pre></td></tr></table></figure></p>
 <p>然后运行至需要查看变量的代码行，这时候再<code>Copy Value</code>或者在<code>lldb</code>中进行<code>po</code>操作<br>拿到的字符串就是完整的了。  </p>
 
+	<blockquote>
+		<p>
+			<strong>本文链接：</strong><a href="http://www.alzz.com/posts/2016/06/06/15_nag_about-linux-ubuntu-android/">http://www.alzz.com/posts/2016/06/06/15_nag_about-linux-ubuntu-android/</a>
+			</br>
+			<strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 CC BY-NC-SA 3.0 许可协议。转载请注明出处！
+		</p>
+	</blockquote>
     
   </div>
 </article>
@@ -223,13 +225,13 @@
    
   <div class="text-center donation">
     <div class="inner-donation">
-      <span class="btn-donation">支持一下</span>
+      <span class="btn-donation">一起 Coding ???</span>
       <div class="donation-body">
         <div class="tip text-center">严于己，宽于人｡◕‿◕｡</div>
         <ul class="theme.donation.items.length">
         
           <li class="item">
-            <img src="/images/qr-alipay.png" alt="">
+            <img src="/images/qr-wechat.png" alt="">
           </li>
         
         </ul>
@@ -337,29 +339,6 @@
   
       <div class="fexo-comments comments-post">
     
-  <section class="disqus-comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-  </section>
-
-  <script>
-    var disqus_shortname = 'disqus_Bt7tDMpkoM';
-    
-    var disqus_url = 'http://alzz.me/posts/2016/06/06/15_nag_about-linux-ubuntu-android/';
-    
-    (function(){
-      var dsq = document.createElement('script');
-      dsq.type = 'text/javascript';
-      dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  </script>
-
-  <script id="dsq-count-scr" src="//disqus_Bt7tDMpkoM.disqus.com/count.js" async></script>
-
-
 
     
 
@@ -370,6 +349,32 @@
 
     
 	
+    
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <div id="comment" class="vcomment" ></div>
+    <script>
+        var notify = 'true' == true ? true : false;
+        var verify = 'true' == true ? true : false;
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+            return GUEST_INFO.indexOf(item) > -1
+        });
+        guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+        window.valine = new Valine({
+            el: '.vcomment',
+            notify: notify,
+            verify: verify,
+            appId: "FkkXjkB8RmuNQxEhqk6BM3Ww-gzGzoHsz",
+            appKey: "ReNBuhWx88Con7IipJ5tLg79",
+            avatar:'mm',
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info:guest_info,
+            pageSize:'10'
+        });
+    </script>
+  	
   </div>
 
   
