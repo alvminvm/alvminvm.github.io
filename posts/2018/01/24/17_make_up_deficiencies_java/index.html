@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>查漏补缺之 Java 篇 | Jeremy&#39;Memo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Android," />
+  
+
+  <meta name="description" content="Java 中的 Monitor机制参考:  
+
+Java 多线程（二）－Monitor  
+
+synchronized 与 reentrantlocksynchronized 的注意点：
+
+锁成员方法时锁对象为当前对象，即 this
+锁静态方法时锁对象为当前类 Class 对象
+可重入
+方法或方法块退出后即自动释放锁  
+
+reentrantlock 注意点：
+
+相对 synchronized 更">
+<meta property="og:type" content="article">
+<meta property="og:title" content="查漏补缺之 Java 篇">
+<meta property="og:url" content="http://alzz.me/posts/2018/01/24/17_make_up_deficiencies_java/index.html">
+<meta property="og:site_name" content="Jeremy'Memo">
+<meta property="og:description" content="Java 中的 Monitor机制参考:  
+
+Java 多线程（二）－Monitor  
+
+synchronized 与 reentrantlocksynchronized 的注意点：
+
+锁成员方法时锁对象为当前对象，即 this
+锁静态方法时锁对象为当前类 Class 对象
+可重入
+方法或方法块退出后即自动释放锁  
+
+reentrantlock 注意点：
+
+相对 synchronized 更">
+<meta property="og:updated_time" content="2018-01-28T15:27:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="查漏补缺之 Java 篇">
+<meta name="twitter:description" content="Java 中的 Monitor机制参考:  
+
+Java 多线程（二）－Monitor  
+
+synchronized 与 reentrantlocksynchronized 的注意点：
+
+锁成员方法时锁对象为当前对象，即 this
+锁静态方法时锁对象为当前类 Class 对象
+可重入
+方法或方法块退出后即自动释放锁  
+
+reentrantlock 注意点：
+
+相对 synchronized 更">
+
+  
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile"></span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text"></span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            文章
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-中的-Monitor机制"><span class="toc-text">Java 中的 Monitor机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#synchronized-与-reentrantlock"><span class="toc-text">synchronized 与 reentrantlock</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#volatile关键字"><span class="toc-text">volatile关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#happen-before-规则"><span class="toc-text">happen-before 规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简述DCL失效原因，解决方法"><span class="toc-text">简述DCL失效原因，解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简述-NIO"><span class="toc-text">简述 NIO</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-17_make_up_deficiencies_java" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">查漏补缺之 Java 篇</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.01.24</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>JeremyHe</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="Java-中的-Monitor机制"><a href="#Java-中的-Monitor机制" class="headerlink" title="Java 中的 Monitor机制"></a>Java 中的 Monitor机制</h2><p><strong>参考: </strong> </p>
+<ul>
+<li><a href="https://www.jianshu.com/p/6fe4bc3374a2" target="_blank" rel="external">Java 多线程（二）－Monitor</a>  </li>
+</ul>
+<h2 id="synchronized-与-reentrantlock"><a href="#synchronized-与-reentrantlock" class="headerlink" title="synchronized 与 reentrantlock"></a>synchronized 与 reentrantlock</h2><p><strong>synchronized 的注意点：</strong></p>
+<ul>
+<li>锁成员方法时锁对象为当前对象，即 this</li>
+<li>锁静态方法时锁对象为当前类 Class 对象</li>
+<li>可重入</li>
+<li>方法或方法块退出后即自动释放锁  </li>
+</ul>
+<p><strong>reentrantlock 注意点：</strong></p>
+<ul>
+<li>相对 synchronized 更加灵活，如区分读写锁、可以 tryLock、获取锁等待期间可被中断。</li>
+<li>频繁同步情况下性能趋于稳定，少量同步情况下性能稍差于 synchronized</li>
+<li>不会自动释放，所以务必使用 <code>try..finally { // 释放锁 }</code></li>
+</ul>
+<h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a>volatile关键字</h2><p><strong>参考：</strong></p>
+<ul>
+<li><a href="https://juejin.im/post/5a689716f265da3e49803b3a" target="_blank" rel="external">面试官最爱的volatile关键字</a>  <blockquote>
+<p>当写一个volatile变量时，JMM会把该线程对应的本地内存中的共享变量刷新到主内存<br>当读一个volatile变量时，JMM会把该线程对应的本地内存置为无效，线程接下来将从主内存中读取共享变量。</p>
+</blockquote>
+</li>
+</ul>
+<p>因此被<code>volatile</code>修饰的变量具备可见性，每一个线程对此变量的读取都保证是最新的<br>但是<code>volatile</code>并不能保证原子性，所以如果做自增或读取再写等复合操作时，并不一定能得到预期的结果。<br>针对自增等情况，建议使用<code>Atomic</code>想着的原子操作类来完成<br>而更复杂的操作则借助<code>synchronized</code>、<code>lock</code>来处理并发<br><code>volatile</code>则适合单一操作的情况，如定义<code>flag</code>用于逻辑判断<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 线程1</span></div><div class="line"><span class="comment">// ... 其他复杂业务</span></div><div class="line">flag = <span class="keyword">true</span>;</div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line"><span class="comment">// 线程2</span></div><div class="line"><span class="keyword">if</span> (flag) &#123;</div><div class="line">    <span class="comment">// do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="happen-before-规则"><a href="#happen-before-规则" class="headerlink" title="happen-before 规则"></a>happen-before 规则</h2><p><strong>参考：</strong></p>
+<ul>
+<li><a href="http://www.10tiao.com/html/687/201610/2247484175/1.html" target="_blank" rel="external">JMM 之 happen-before 规则</a>  </li>
+<li><a href="http://blog.csdn.net/suifeng3051/article/details/52611310" target="_blank" rel="external">全面理解Java内存模型</a> </li>
+<li><a href="http://gityuan.com/2016/01/09/java-memory/" target="_blank" rel="external">Jvm内存模型</a>  </li>
+</ul>
+<p>个人理解，Jvm 屏蔽了硬件使得程序可以跨平台运行，JMM（Java内存模型)则是对真实硬件内存架构的屏蔽。<br>在涉及多线程上，JMM 通过happen-before 规则来解决线程之间的通信和同步。<br>开发者参考这份指南，JMM 遵守这份规则，从而保证所写的正确同步的多线程程序执行的结果与预期一致<br>而编译器也能根据这份规则尽可能的优化程序的并发度，使得编译出来的程序更加高效的使用硬件资源  </p>
+<p>常见的规则有8个：程序顺序规则、监视器锁规则、volatile 变量规则、传递性、线程启动规则、线程中断规则、线程终结规则、对象终结规则  </p>
+<p>简单说下就是：<br>了解 JVM，帮助我们知悉程序的运行环境和运行情况<br>了解 JMM，帮助我们了解程序的内存管理情况如分配、回收<br>了解 hb 规则，帮助我们写出多线程安全且高效的程序  </p>
+<p>更详细的内容可以细读一下上面列的参考文章  </p>
+<h2 id="简述DCL失效原因，解决方法"><a href="#简述DCL失效原因，解决方法" class="headerlink" title="简述DCL失效原因，解决方法"></a>简述DCL失效原因，解决方法</h2><p><strong>参考：</strong></p>
+<ul>
+<li><a href="http://blog.csdn.net/chenssy/article/details/58616749" target="_blank" rel="external">Java内存模型之从JMM角度分析DCL</a></li>
+</ul>
+<p>在阅读上面的参考文章之前注意了<br>请务必认为文章中的单例对象一定有其他需要初始化的变量，否则 DCL 不存在失效之说。<br>请务必认为文章中的单例对象一定有其他需要初始化的变量，否则 DCL 不存在失效之说。<br>请务必认为文章中的单例对象一定有其他需要初始化的变量，否则 DCL 不存在失效之说。  </p>
+<p>因为失效的原因，简单点说就是由于指令重排线程A先做了变量的赋值但还未执行初始化，于是线程B拿到了一个未初始化好的单例对象，于是 GG 了…  </p>
+<p>下面是两种解决方法:<br><strong>1.</strong> 将单例对象声明为<code>volatile</code>从而禁止指令重排保证其他线程拿到的是一个初始化好的单例对象<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">    <span class="comment">//通过volatile关键字来确保安全</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Singleton singleton;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> something = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</div><div class="line">        something = <span class="number">1000</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(singleton == <span class="keyword">null</span>)&#123;</div><div class="line">            <span class="keyword">synchronized</span> (Singleton.class)&#123;</div><div class="line">                <span class="keyword">if</span>(singleton == <span class="keyword">null</span>)&#123;</div><div class="line">                    singleton = <span class="keyword">new</span> Singleton();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> singleton;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>2.</strong> 利用类加载并初始化在多线程时依旧只会被加载一次的特性（由 Jvm 保证)，将单例作为静态变量并直接构造<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span></span>&#123;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">static</span> Singleton singleton = <span class="keyword">new</span> Singleton();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> SingletonHolder.singleton;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> something = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</div><div class="line">        something = <span class="number">1000</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>关于第二种，如果没有懒加载的需求，甚至可以省去内部静态类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton singleton = <span class="keyword">new</span> Singleton();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> singleton;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> something = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</div><div class="line">        something = <span class="number">1000</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="简述-NIO"><a href="#简述-NIO" class="headerlink" title="简述 NIO"></a>简述 NIO</h2><p><strong>参考：</strong>  </p>
+<ul>
+<li><a href="https://teakki.com/p/57df75471201d4c1629b8221" target="_blank" rel="external">Java NIO原理图文分析及代码实现</a></li>
+</ul>
+<ol>
+<li>由一个专门的线程来处理所有的 IO 事件，并负责分发。 </li>
+<li>事件驱动机制：事件到的时候触发，而不是同步的去监视事件。 </li>
+<li>线程通讯：线程之间通过 wait,notify 等方式通讯。保证每次上下文切换都是有意义的。减少无谓的线程切换。</li>
+</ol>
+
+	<blockquote>
+		<p>
+			<strong>本文作者：</strong><a href="http://www.alzz.me">JeremyHe</a>
+			</br>
+			<strong>本文链接：</strong><a href="http://www.alzz.me/posts/2018/01/24/17_make_up_deficiencies_java/">http://www.alzz.me/posts/2018/01/24/17_make_up_deficiencies_java/</a>
+			</br>
+			<strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+		</p>
+	</blockquote>
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">一起 Coding ???</span>
+      <div class="donation-body">
+        <div class="tip text-center">严于己，宽于人｡◕‿◕｡</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/posts/2017/05/20/16_cant_download_gradle/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              文章
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+
+
+
+    
+
+    
+	
+    
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <div id="comment" class="vcomment" ></div>
+    <script>
+        var notify = 'true' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+            return GUEST_INFO.indexOf(item) > -1
+        });
+        guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+        window.valine = new Valine({
+            el: '.vcomment',
+            notify: notify,
+            verify: verify,
+            appId: "FkkXjkB8RmuNQxEhqk6BM3Ww-gzGzoHsz",
+            appKey: "ReNBuhWx88Con7IipJ5tLg79",
+            avatar:'mm',
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info:guest_info,
+            pageSize:'10'
+        });
+    </script>
+  	
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

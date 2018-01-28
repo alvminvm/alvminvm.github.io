@@ -9,4 +9,22 @@
 .article-content h2 {
     font-weight: bold;
     color: darkcyan;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
 }
+
+.article-content h2:before {
+    /*content: "▌";*/
+    content: "# ";
+}
+
+figure.highlight {
+    background-image: url(https://static.segmentfault.com/v-5a66e7d0/global/img/blueprint.png);
+    -webkit-background-size: 30px,30px;
+    background-size: 30px,30px;
+}
+
+.highlight .gutter {
+    display: none;
+}
+

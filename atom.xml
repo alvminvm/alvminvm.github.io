@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://alzz.me/"/>
-  <updated>2018-01-18T16:07:45.000Z</updated>
+  <updated>2018-01-28T15:27:53.000Z</updated>
   <id>http://alzz.me/</id>
   
   <author>
@@ -14,6 +14,81 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>查漏补缺之 Java 篇</title>
+    <link href="http://alzz.me/posts/2018/01/24/17_make_up_deficiencies_java/"/>
+    <id>http://alzz.me/posts/2018/01/24/17_make_up_deficiencies_java/</id>
+    <published>2018-01-24T15:19:00.000Z</published>
+    <updated>2018-01-28T15:27:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Java-中的-Monitor机制"><a href="#Java-中的-Monitor机制" class="headerlink" title="Java 中的 Monitor机制"></a>Java 中的 Monitor机制</h2><p><strong>参考: </strong> </p>
+<ul>
+<li><a href="https://www.jianshu.com/p/6fe4bc3374a2" target="_blank" rel="external">Java 多线程（二）－Monitor</a>  </li>
+</ul>
+<h2 id="synchronized-与-reentrantlock"><a href="#synchronized-与-reentrantlock" class="headerlink" title="synchronized 与 reentrantlock"></a>synchronized 与 reentrantlock</h2><p><strong>synchronized 的注意点：</strong></p>
+<ul>
+<li>锁成员方法时锁对象为当前对象，即 this</li>
+<li>锁静态方法时锁对象为当前类 Class 对象</li>
+<li>可重入</li>
+<li>方法或方法块退出后即自动释放锁  </li>
+</ul>
+<p><strong>reentrantlock 注意点：</strong></p>
+<ul>
+<li>相对 synchronized 更加灵活，如区分读写锁、可以 tryLock、获取锁等待期间可被中断。</li>
+<li>频繁同步情况下性能趋于稳定，少量同步情况下性能稍差于 synchronized</li>
+<li>不会自动释放，所以务必使用 <code>try..finally { // 释放锁 }</code></li>
+</ul>
+<h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a>volatile关键字</h2><p><strong>参考：</strong></p>
+<ul>
+<li><a href="https://juejin.im/post/5a689716f265da3e49803b3a" target="_blank" rel="external">面试官最爱的volatile关键字</a>  <blockquote>
+<p>当写一个volatile变量时，JMM会把该线程对应的本地内存中的共享变量刷新到主内存<br>当读一个volatile变量时，JMM会把该线程对应的本地内存置为无效，线程接下来将从主内存中读取共享变量。</p>
+</blockquote>
+</li>
+</ul>
+<p>因此被<code>volatile</code>修饰的变量具备可见性，每一个线程对此变量的读取都保证是最新的<br>但是<code>volatile</code>并不能保证原子性，所以如果做自增或读取再写等复合操作时，并不一定能得到预期的结果。<br>针对自增等情况，建议使用<code>Atomic</code>想着的原子操作类来完成<br>而更复杂的操作则借助<code>synchronized</code>、<code>lock</code>来处理并发<br><code>volatile</code>则适合单一操作的情况，如定义<code>flag</code>用于逻辑判断<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 线程1</span></div><div class="line"><span class="comment">// ... 其他复杂业务</span></div><div class="line">flag = <span class="keyword">true</span>;</div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line"><span class="comment">// 线程2</span></div><div class="line"><span class="keyword">if</span> (flag) &#123;</div><div class="line">    <span class="comment">// do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="happen-before-规则"><a href="#happen-before-规则" class="headerlink" title="happen-before 规则"></a>happen-before 规则</h2><p><strong>参考：</strong></p>
+<ul>
+<li><a href="http://www.10tiao.com/html/687/201610/2247484175/1.html" target="_blank" rel="external">JMM 之 happen-before 规则</a>  </li>
+<li><a href="http://blog.csdn.net/suifeng3051/article/details/52611310" target="_blank" rel="external">全面理解Java内存模型</a> </li>
+<li><a href="http://gityuan.com/2016/01/09/java-memory/" target="_blank" rel="external">Jvm内存模型</a>  </li>
+</ul>
+<p>个人理解，Jvm 屏蔽了硬件使得程序可以跨平台运行，JMM（Java内存模型)则是对真实硬件内存架构的屏蔽。<br>在涉及多线程上，JMM 通过happen-before 规则来解决线程之间的通信和同步。<br>开发者参考这份指南，JMM 遵守这份规则，从而保证所写的正确同步的多线程程序执行的结果与预期一致<br>而编译器也能根据这份规则尽可能的优化程序的并发度，使得编译出来的程序更加高效的使用硬件资源  </p>
+<p>常见的规则有8个：程序顺序规则、监视器锁规则、volatile 变量规则、传递性、线程启动规则、线程中断规则、线程终结规则、对象终结规则  </p>
+<p>简单说下就是：<br>了解 JVM，帮助我们知悉程序的运行环境和运行情况<br>了解 JMM，帮助我们了解程序的内存管理情况如分配、回收<br>了解 hb 规则，帮助我们写出多线程安全且高效的程序  </p>
+<p>更详细的内容可以细读一下上面列的参考文章  </p>
+<h2 id="简述DCL失效原因，解决方法"><a href="#简述DCL失效原因，解决方法" class="headerlink" title="简述DCL失效原因，解决方法"></a>简述DCL失效原因，解决方法</h2><p><strong>参考：</strong></p>
+<ul>
+<li><a href="http://blog.csdn.net/chenssy/article/details/58616749" target="_blank" rel="external">Java内存模型之从JMM角度分析DCL</a></li>
+</ul>
+<p>在阅读上面的参考文章之前注意了<br>请务必认为文章中的单例对象一定有其他需要初始化的变量，否则 DCL 不存在失效之说。<br>请务必认为文章中的单例对象一定有其他需要初始化的变量，否则 DCL 不存在失效之说。<br>请务必认为文章中的单例对象一定有其他需要初始化的变量，否则 DCL 不存在失效之说。  </p>
+<p>因为失效的原因，简单点说就是由于指令重排线程A先做了变量的赋值但还未执行初始化，于是线程B拿到了一个未初始化好的单例对象，于是 GG 了…  </p>
+<p>下面是两种解决方法:<br><strong>1.</strong> 将单例对象声明为<code>volatile</code>从而禁止指令重排保证其他线程拿到的是一个初始化好的单例对象<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">    <span class="comment">//通过volatile关键字来确保安全</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Singleton singleton;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> something = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</div><div class="line">        something = <span class="number">1000</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(singleton == <span class="keyword">null</span>)&#123;</div><div class="line">            <span class="keyword">synchronized</span> (Singleton.class)&#123;</div><div class="line">                <span class="keyword">if</span>(singleton == <span class="keyword">null</span>)&#123;</div><div class="line">                    singleton = <span class="keyword">new</span> Singleton();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> singleton;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>2.</strong> 利用类加载并初始化在多线程时依旧只会被加载一次的特性（由 Jvm 保证)，将单例作为静态变量并直接构造<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span></span>&#123;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">static</span> Singleton singleton = <span class="keyword">new</span> Singleton();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> SingletonHolder.singleton;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> something = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</div><div class="line">        something = <span class="number">1000</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>关于第二种，如果没有懒加载的需求，甚至可以省去内部静态类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton singleton = <span class="keyword">new</span> Singleton();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> singleton;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> something = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</div><div class="line">        something = <span class="number">1000</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="简述-NIO"><a href="#简述-NIO" class="headerlink" title="简述 NIO"></a>简述 NIO</h2><p><strong>参考：</strong>  </p>
+<ul>
+<li><a href="https://teakki.com/p/57df75471201d4c1629b8221" target="_blank" rel="external">Java NIO原理图文分析及代码实现</a></li>
+</ul>
+<ol>
+<li>由一个专门的线程来处理所有的 IO 事件，并负责分发。 </li>
+<li>事件驱动机制：事件到的时候触发，而不是同步的去监视事件。 </li>
+<li>线程通讯：线程之间通过 wait,notify 等方式通讯。保证每次上下文切换都是有意义的。减少无谓的线程切换。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Java-中的-Monitor机制&quot;&gt;&lt;a href=&quot;#Java-中的-Monitor机制&quot; class=&quot;headerlink&quot; title=&quot;Java 中的 Monitor机制&quot;&gt;&lt;/a&gt;Java 中的 Monitor机制&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;参考
+    
+    </summary>
+    
+      <category term="Android" scheme="http://alzz.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://alzz.me/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>快速解决 Gradle 下载失败问题</title>
