@@ -1,3 +1,7 @@
+.icon-update:before {
+    content: '\e817';
+}
+
 .article-content img {
 	border-radius: 3px;
 	box-shadow: 0 0 8px 1px lightgrey;
