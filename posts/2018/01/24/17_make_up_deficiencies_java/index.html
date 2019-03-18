@@ -247,8 +247,9 @@ reentrantlock 注意点：
 </ul>
 <h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a>volatile关键字</h2><p><strong>参考：</strong></p>
 <ul>
-<li><a href="https://juejin.im/post/5a689716f265da3e49803b3a" target="_blank" rel="external">面试官最爱的volatile关键字</a><br><strong>当写一个volatile变量时，JMM会把该线程对应的本地内存中的共享变量刷新到主内存</strong><br><strong>当读一个volatile变量时，JMM会把该线程对应的本地内存置为无效，线程接下来将从主内存中读取共享变量。</strong>  </li>
+<li><a href="https://juejin.im/post/5a689716f265da3e49803b3a" target="_blank" rel="external">面试官最爱的volatile关键字</a>  </li>
 </ul>
+<p><strong>当写一个volatile变量时，JMM会把该线程对应的本地内存中的共享变量刷新到主内存</strong><br><strong>当读一个volatile变量时，JMM会把该线程对应的本地内存置为无效，线程接下来将从主内存中读取共享变量。</strong>  </p>
 <p>因此被<code>volatile</code>修饰的变量具备可见性，每一个线程对此变量的读取都保证是最新的<br>但是<code>volatile</code>并不能保证原子性，所以如果做自增或读取再写等复合操作时，并不一定能得到预期的结果。<br>针对自增等情况，建议使用<code>Atomic</code>想着的原子操作类来完成<br>而更复杂的操作则借助<code>synchronized</code>、<code>lock</code>来处理并发<br><code>volatile</code>则适合单一操作的情况，如定义<code>flag</code>用于逻辑判断<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 线程1</span></div><div class="line"><span class="comment">// ... 其他复杂业务</span></div><div class="line">flag = <span class="keyword">true</span>;</div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line"><span class="comment">// 线程2</span></div><div class="line"><span class="keyword">if</span> (flag) &#123;</div><div class="line">    <span class="comment">// do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="happen-before-规则"><a href="#happen-before-规则" class="headerlink" title="happen-before 规则"></a>happen-before 规则</h2><p><strong>参考：</strong></p>
 <ul>
@@ -354,22 +355,6 @@ reentrantlock 注意点：
 
 
    
-  <div class="text-center donation">
-    <div class="inner-donation">
-      <span class="btn-donation">有问题?</span>
-      <div class="donation-body">
-        <div class="tip text-center">微信｡◕‿◕｡</div>
-        <ul class="theme.donation.items.length">
-        
-          <li class="item">
-            <img src="/images/qr-wechat.png" alt="">
-          </li>
-        
-        </ul>
-      </div>
-    </div>
-  </div>
-
 
    
   <div class="box-prev-next clearfix">
