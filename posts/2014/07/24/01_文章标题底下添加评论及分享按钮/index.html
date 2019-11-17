@@ -50,11 +50,7 @@
 
 
   
-    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
 
-  
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
   
 </head>
 
@@ -149,7 +145,7 @@
 
 
   <div id="toc" class="toc-article">
-    <strong class="toc-title">Posts List</strong>
+    <strong class="toc-title">文章目录</strong>
     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#修改article-ejs"><span class="toc-text">修改article.ejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改article-styl"><span class="toc-text">修改article.styl</span></a></li></ol>
   </div>
 
@@ -186,12 +182,6 @@
       
 
       
-      <i class="fa fa-eye"></i> 
-        <span id="busuanzi_container_page_pv">
-           &nbsp热度 <span id="busuanzi_value_page_pv">
-           <i class="fa fa-spinner fa-spin"></i></span>℃
-        </span>
-      
 
       
       
@@ -205,6 +195,7 @@
 <p>修改成如下，然后保存.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">post.link</span> || <span class="attr">post.title</span>)&#123; %&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">header</span> <span class="attr">class</span>=<span class="string">"article-header"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>('<span class="attr">post</span>/<span class="attr">title</span>', &#123;<span class="attr">class_name:</span> '<span class="attr">article-title</span>'&#125;) %&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line"><span class="comment">&lt;!-- header-footer --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">"header-footer"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">data-url</span>=<span class="string">"&lt;%- post.permalink %&gt;"</span> <span class="attr">data-id</span>=<span class="string">"&lt;%= post._id %&gt;"</span> <span class="attr">class</span>=<span class="string">"article-share-link"</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">__</span>('<span class="attr">share</span>') %&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (!<span class="attr">index</span> &amp;&amp; <span class="attr">post.comments</span>)&#123; %&gt;</span></div><div class="line">	<span class="comment">&lt;!-- ds-thread为多说对话框的id，具体怎么添加多说对话框可以百度--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%- post.permalink %&gt;#ds-thread"</span> <span class="attr">class</span>=<span class="string">"article-comment-link"</span>&gt;</span>评论<span class="tag">&lt;/<span class="name">a</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>('<span class="attr">post</span>/<span class="attr">tag</span>') %&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <h2 id="修改article-styl"><a href="#修改article-styl" class="headerlink" title="修改article.styl"></a>修改article.styl</h2><p>打开文件<strong>themes/landscape-plus/source/css/_partial/article.styl</strong><br>在末尾添加如下代码<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.header-footer</span></div><div class="line">  <span class="selector-tag">clearfix</span>()</div><div class="line">  <span class="selector-tag">font-size</span>: 0<span class="selector-class">.85em</span></div><div class="line">  <span class="selector-tag">line-height</span>: <span class="selector-tag">line-height</span></div><div class="line">  <span class="selector-tag">padding-top</span>: <span class="selector-tag">line-height</span></div><div class="line">  <span class="selector-tag">margin</span>: 0 30<span class="selector-tag">px</span> 8<span class="selector-tag">px</span> 25<span class="selector-tag">px</span></div><div class="line">  <span class="selector-tag">a</span></div><div class="line">    <span class="selector-tag">color</span>: <span class="selector-tag">color-grey</span></div><div class="line">    <span class="selector-tag">text-decoration</span>: <span class="selector-tag">none</span></div><div class="line">    &amp;<span class="selector-pseudo">:hover</span></div><div class="line">      <span class="selector-tag">color</span>: <span class="selector-tag">color-default</span></div></pre></td></tr></table></figure></p>
 
+    
 	<blockquote>
 		<p>
 			<strong>本文作者：</strong><a href="https://alzz.me">JeremyHe</a>
@@ -214,6 +205,7 @@
 			<strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
 		</p>
 	</blockquote>
+    
     
   </div>
 </article>
@@ -264,7 +256,7 @@
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">Close</span>
+      <span id="close" class="btn-close">关闭</span>
     </div>
     <hr>
     <div class="modal-body">

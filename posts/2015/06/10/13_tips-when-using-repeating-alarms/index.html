@@ -50,11 +50,7 @@
 
 
   
-    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
 
-  
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
   
 </head>
 
@@ -149,7 +145,7 @@
 
 
   <div id="toc" class="toc-article">
-    <strong class="toc-title">Posts List</strong>
+    <strong class="toc-title">文章目录</strong>
     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#触发时间增加随机性"><span class="toc-text">触发时间增加随机性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用setInexactRepeating-代替setRepeating"><span class="toc-text">使用setInexactRepeating()代替setRepeating()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ELAPSED-REALTIME与RTC"><span class="toc-text">ELAPSED_REALTIME与RTC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wakeup版本与非wakeup版本的区别"><span class="toc-text">wakeup版本与非wakeup版本的区别</span></a></li></ol>
   </div>
 
@@ -186,12 +182,6 @@
       
 
       
-      <i class="fa fa-eye"></i> 
-        <span id="busuanzi_container_page_pv">
-           &nbsp热度 <span id="busuanzi_value_page_pv">
-           <i class="fa fa-spinner fa-spin"></i></span>℃
-        </span>
-      
 
       
       
@@ -219,6 +209,7 @@
 </ul>
 <p>他们的区别在于设备屏幕熄灭状态下的反应。wakeup版本触发时，当屏幕处于熄灭状态时依旧会唤醒设备，从而可以执行所必要的操作。而非wakeup版本触发时，如果此时屏幕处于熄灭状态，则不会把设备唤醒，而是等到用户或者是其他操作把设备唤醒时，才会把pendingIntent传递过去从而执行任务。  </p>
 
+    
 	<blockquote>
 		<p>
 			<strong>本文作者：</strong><a href="https://alzz.me">JeremyHe</a>
@@ -228,6 +219,7 @@
 			<strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
 		</p>
 	</blockquote>
+    
     
   </div>
 </article>
@@ -278,7 +270,7 @@
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">Close</span>
+      <span id="close" class="btn-close">关闭</span>
     </div>
     <hr>
     <div class="modal-body">

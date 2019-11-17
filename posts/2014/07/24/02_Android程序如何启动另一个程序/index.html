@@ -50,11 +50,7 @@
 
 
   
-    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
 
-  
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
   
 </head>
 
@@ -149,7 +145,7 @@
 
 
   <div id="toc" class="toc-article">
-    <strong class="toc-title">Posts List</strong>
+    <strong class="toc-title">文章目录</strong>
     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用ComponentName"><span class="toc-text">使用ComponentName</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以新的task启动程序"><span class="toc-text">以新的task启动程序</span></a></li></ol>
   </div>
 
@@ -186,12 +182,6 @@
       
 
       
-      <i class="fa fa-eye"></i> 
-        <span id="busuanzi_container_page_pv">
-           &nbsp热度 <span id="busuanzi_value_page_pv">
-           <i class="fa fa-spinner fa-spin"></i></span>℃
-        </span>
-      
 
       
       
@@ -216,6 +206,7 @@
 <h2 id="以新的task启动程序"><a href="#以新的task启动程序" class="headerlink" title="以新的task启动程序"></a>以新的task启动程序</h2><p>在启动外部程序的时候，同样也是可以设置启动的flag的<br>例如添加FLAG_ACTIVITY_NEW_TASK标识<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent(<span class="string">"com.example.b.start"</span>);</div><div class="line">intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure></p>
 <p>添加这个标识，区别在于被启动的程序(DemoB)与发起启动的程序(DemoA)是否在同一个task里。<br>表现出来的区别就是当启动外部程序后，按home键退出到桌面，重新打开DemoA程序，<br>如果带有FLAG_ACTIVITY_NEW_TASK标识，则进入的是DemoA之前的界面<br>而如果没有带FLAG_ACTIVITY_NEW_TASK标识，则会进入到DemoB的界面当中.  </p>
 
+    
 	<blockquote>
 		<p>
 			<strong>本文作者：</strong><a href="https://alzz.me">JeremyHe</a>
@@ -225,6 +216,7 @@
 			<strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
 		</p>
 	</blockquote>
+    
     
   </div>
 </article>
@@ -275,7 +267,7 @@
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">Close</span>
+      <span id="close" class="btn-close">关闭</span>
     </div>
     <hr>
     <div class="modal-body">
