@@ -4,7 +4,14 @@
   <url>
     <loc>https://alzz.me/awsl-changelog/index.html</loc>
     
-    <lastmod>2020-03-21T10:13:12.697Z</lastmod>
+    <lastmod>2020-04-12T07:17:08.218Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://alzz.me/awsl-privacy/index.html</loc>
+    
+    <lastmod>2020-04-12T07:01:55.535Z</lastmod>
     
   </url>
   
@@ -12,13 +19,6 @@
     <loc>https://alzz.me/awsl/reset/index.html</loc>
     
     <lastmod>2019-11-24T13:45:56.955Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://alzz.me/awsl-privacy/index.html</loc>
-    
-    <lastmod>2019-11-17T14:27:09.579Z</lastmod>
     
   </url>
   
@@ -51,7 +51,21 @@
   </url>
   
   <url>
+    <loc>https://alzz.me/posts/2016/06/06/15_nag_about-linux-ubuntu-android/</loc>
+    
+    <lastmod>2017-06-04T14:58:18.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://alzz.me/search/index.html</loc>
+    
+    <lastmod>2017-06-04T14:58:18.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://alzz.me/about/index.html</loc>
     
     <lastmod>2017-06-04T14:58:18.000Z</lastmod>
     
@@ -65,16 +79,9 @@
   </url>
   
   <url>
-    <loc>https://alzz.me/posts/2016/06/06/15_nag_about-linux-ubuntu-android/</loc>
+    <loc>https://alzz.me/posts/2015/02/03/09_Ubuntu-1204%E5%AE%89%E8%A3%85Emacs243/</loc>
     
-    <lastmod>2017-06-04T14:58:18.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://alzz.me/about/index.html</loc>
-    
-    <lastmod>2017-06-04T14:58:18.000Z</lastmod>
+    <lastmod>2016-11-26T09:09:47.000Z</lastmod>
     
   </url>
   
@@ -94,13 +101,6 @@
   
   <url>
     <loc>https://alzz.me/posts/2015/05/19/11_fragment-in-android-developer/</loc>
-    
-    <lastmod>2016-11-26T09:09:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://alzz.me/posts/2015/02/03/09_Ubuntu-1204%E5%AE%89%E8%A3%85Emacs243/</loc>
     
     <lastmod>2016-11-26T09:09:47.000Z</lastmod>
     
