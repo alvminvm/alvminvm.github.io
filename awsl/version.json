@@ -1,10 +1,18 @@
 {
     "description": "",
-    "name": "2.2.4",
-    "code": 42,
+    "name": "2.2.5",
+    "code": 43,
     "url": "https://www.coolapk.com/apk/228001",
-    "donate": "",
+    "donate": 
+"「次元壁纸」精心挑选二次元美图，非常感谢大家的支持。对于转账支持大于或等于 14 元的小伙伴，将赠予永久高级版作为回礼。支持后可用支付宝/微信订单号进行激活，激活提示失败请稍等片刻。激活码只能使用一次。无法激活的请支付宝/微信内私信
+
+高级版目前可享用以下功能：
+1. 无限制壁纸下载
+2. 壁纸全局搜索
+3. 无限制收藏壁纸
+4. 用户名修改
+N. 包含后续更新的高级功能
+",
     "alipayUrl": "",
-    "weixinUrl": "http://awsl.woaifulishe.com/shop.jpeg",
-    "xddPayEnable": false
+    "weixinUrl": "http://awsl.woaifulishe.com/shop.jpeg"
 }
