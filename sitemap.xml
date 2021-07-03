@@ -4,7 +4,7 @@
   <url>
     <loc>https://alzz.me/awsl-changelog/index.html</loc>
     
-    <lastmod>2021-07-02T07:43:53.996Z</lastmod>
+    <lastmod>2021-07-03T11:50:02.759Z</lastmod>
     
   </url>
   
@@ -51,7 +51,7 @@
   </url>
   
   <url>
-    <loc>https://alzz.me/category/index.html</loc>
+    <loc>https://alzz.me/posts/2016/06/06/15_nag_about-linux-ubuntu-android/</loc>
     
     <lastmod>2017-06-04T14:58:18.000Z</lastmod>
     
@@ -65,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://alzz.me/posts/2016/06/06/15_nag_about-linux-ubuntu-android/</loc>
+    <loc>https://alzz.me/category/index.html</loc>
     
     <lastmod>2017-06-04T14:58:18.000Z</lastmod>
     
@@ -79,35 +79,14 @@
   </url>
   
   <url>
-    <loc>https://alzz.me/posts/2015/05/19/11_fragment-in-android-developer/</loc>
-    
-    <lastmod>2016-11-26T09:09:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://alzz.me/posts/2014/08/05/06_%E5%88%AB%E8%A2%AB%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E%E9%AA%97%E4%BA%86%EF%BC%81--%E8%B5%B0%E5%87%BAsetInterpolator%E7%9A%84%E6%B7%B1%E5%9D%91/</loc>
-    
-    <lastmod>2016-11-26T09:09:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://alzz.me/posts/2015/01/14/08_Android-Webview%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%BB%93/</loc>
-    
-    <lastmod>2016-11-26T09:09:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://alzz.me/posts/2015/02/03/09_Ubuntu-1204%E5%AE%89%E8%A3%85Emacs243/</loc>
-    
-    <lastmod>2016-11-26T09:09:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://alzz.me/posts/2015/04/28/10_%E6%88%91%E7%9A%84%E7%A8%8B%E5%BA%8F%E7%8C%BF%E4%B9%A6%E5%8D%95/</loc>
+    
+    <lastmod>2016-11-26T09:09:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://alzz.me/posts/2015/05/19/11_fragment-in-android-developer/</loc>
     
     <lastmod>2016-11-26T09:09:47.000Z</lastmod>
     
@@ -121,7 +100,28 @@
   </url>
   
   <url>
+    <loc>https://alzz.me/posts/2015/01/14/08_Android-Webview%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%BB%93/</loc>
+    
+    <lastmod>2016-11-26T09:09:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://alzz.me/posts/2015/06/09/12_keep-device-awake/</loc>
+    
+    <lastmod>2016-11-26T09:09:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://alzz.me/posts/2015/02/03/09_Ubuntu-1204%E5%AE%89%E8%A3%85Emacs243/</loc>
+    
+    <lastmod>2016-11-26T09:09:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://alzz.me/posts/2014/08/05/06_%E5%88%AB%E8%A2%AB%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E%E9%AA%97%E4%BA%86%EF%BC%81--%E8%B5%B0%E5%87%BAsetInterpolator%E7%9A%84%E6%B7%B1%E5%9D%91/</loc>
     
     <lastmod>2016-11-26T09:09:47.000Z</lastmod>
     
